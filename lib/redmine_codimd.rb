@@ -7,7 +7,7 @@ module RedmineCodimd
       Additionals.patch(%w[QueriesHelper], 'redmine_codimd')
 
       # Helper
-      SettingsController.send :helper, CodimdHelper
+      SettingsController.send :helper, CodimdsHelper
     end
 
     def settings

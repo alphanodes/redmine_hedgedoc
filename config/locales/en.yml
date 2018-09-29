@@ -4,3 +4,5 @@ en:
   project_module_codimd: CodiMD
   label_codimd_url: CodiMD URL
   label_show_codimd_in_menu: Show CodiMD in menu
+  label_new_codimd_pad: New CodiMD pad
+  label_codimd_pad_plural: CodiMD Pads

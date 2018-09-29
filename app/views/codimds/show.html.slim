@@ -1,18 +1,19 @@
 .contextual
-  - if User.current.allowed_to?(:show_codimd_pads, @project)
-    = link_to l(:field_new_codimd_pad), new_codimd_pad_path, class: 'icon icon-add new-codimd-pad'
+  = link_to l(:label_new_codimd_pad), new_codimd_pad_path, class: 'icon icon-add new-codimd-pad'
 
-- html_title(@query.new_record? ? l(:label_codimd_pad_plural) : @query.name)
+- html_title(l(:label_codimd_pad_plural))
 
-= form_tag(_db_entries_path(@project), method: :get, id: 'query_form') do
-  = render(partial: 'additionals/h2_with_query_search',
-           locals: { title: :label_db_entry_plural, placeholder: :label_db_entry_search, q: params[:search] })
-  = render partial: 'queries/query_form'
+h2 = l(:label_codimd_pad_plural)
 
-- if @query.valid?
-  #query-result-list
-    - if @db_entries.empty?
-      p.nodata = l(:label_no_data)
-    - else
-      = render_query_totals(@query)
-      = render partial: 'list'
+table.list.codimd-pads
+  thead
+    tr
+      th = l(:field_name)
+      th = l(:field_author)
+      th = l(:field_created_on)
+      th = l(:field_updated_on)
+      th
+  tbody
+    - @codimd_pads.each do |t|
+      tr class="#{cycle('odd', 'even')}"
+        td = link_to t.name, t.url
