@@ -9,7 +9,22 @@ class CodimdsController < ApplicationController
   include QueriesHelper
   include AdditionalsQueriesHelper
 
+  helper :sort
+  include SortHelper
+
   def show
-    @codimd_pads = CodimdPad.pads
+    sort_init 'updatedAt', 'desc'
+    sort_update %w[title createdAt updatedAt]
+
+    @limit = per_page_option
+
+    scope = CodimdPad.pads
+
+    @codimd_pad_count = scope.count
+    @codimd_pad_pages = Paginator.new @codimd_pad_count, @limit, params['page']
+    @offset ||= @codimd_pad_pages.offset
+    @codimd_pads = scope.order(CodimdPad.fix_sort_clause(sort_clause))
+                        .limit(@limit)
+                        .offset(@offset)
   end
 end

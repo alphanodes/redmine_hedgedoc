@@ -5,22 +5,30 @@
 
 h2 = l(:label_codimd_pad_plural)
 
-table.list.codimd-pads
-  thead
-    tr
-      th = l(:field_name)
-      th = l(:field_author)
-      th = l(:field_created_on)
-      th = l(:field_updated_on)
-  tbody
-    - @codimd_pads.each do |t|
-      tr class="#{cycle('odd', 'even')}"
-        td = link_to h(t.title), codimd_pad_url(t), class: 'external'
-        td
-          - owner = codimd_pad_owner(t)
-          - if owner.present?
-            = link_to_user(owner)
-          - else
-            = h(t.ownerId)
-        td = format_time(t.createdAt, true, User.current)
-        td = format_time(t.updatedAt, true, User.current)
+- if @codimd_pads.any?
+  div.autoscroll
+    table.list.codimd-pads
+      thead
+        tr
+          = sort_header_tag('title', caption: l(:field_name))
+          th = l(:field_author)
+          = sort_header_tag('createdAt', caption: l(:field_created_on))
+          = sort_header_tag('updatedAt', caption: l(:field_updated_on))
+      tbody
+        - @codimd_pads.each do |t|
+          tr class="#{cycle('odd', 'even')}"
+            td = link_to h(t.title), codimd_pad_url(t), class: 'external'
+            td
+              - owner = codimd_pad_owner(t)
+              - if owner.present?
+                = link_to_user(owner)
+              - else
+                = h(t.ownerId)
+            td = format_time(t.createdAt, true, User.current)
+            td = format_time(t.updatedAt, true, User.current)
+
+  span.pagination
+    = pagination_links_full @codimd_pad_pages, @codimd_pad_count
+- else
+  p.nodata
+    = l(:label_no_data)
