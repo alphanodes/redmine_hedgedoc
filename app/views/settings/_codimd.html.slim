@@ -1,0 +1,15 @@
+- @settings = ActionController::Parameters.new(@settings) unless Rails.version >= '5.2'
+
+p
+  = label_tag 'settings[codimd_url]', t(:label_codimd_url)
+  = text_field_tag 'settings[codimd_url]', @settings[:codimd_url], size: 50, placeholder: 'https://url-to-your-codimd'
+
+p
+  = label_tag 'settings[codimd_in_menu]', l(:label_show_codimd_in_menu)
+  = select_tag 'settings[codimd_in_menu]',
+               options_for_menu_select(@settings[:codimd_in_menu])
+
+p
+  = label_tag 'settings[show_latest_entries]', l(:label_show_latest_entries)
+  = select_tag 'settings[show_latest_entries]',
+               options_for_overview_select(@settings[:show_latest_entries])

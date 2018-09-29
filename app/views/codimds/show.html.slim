@@ -1,0 +1,18 @@
+.contextual
+  - if User.current.allowed_to?(:show_codimd_pads, @project)
+    = link_to l(:field_new_codimd_pad), new_codimd_pad_path, class: 'icon icon-add new-codimd-pad'
+
+- html_title(@query.new_record? ? l(:label_codimd_pad_plural) : @query.name)
+
+= form_tag(_db_entries_path(@project), method: :get, id: 'query_form') do
+  = render(partial: 'additionals/h2_with_query_search',
+           locals: { title: :label_db_entry_plural, placeholder: :label_db_entry_search, q: params[:search] })
+  = render partial: 'queries/query_form'
+
+- if @query.valid?
+  #query-result-list
+    - if @db_entries.empty?
+      p.nodata = l(:label_no_data)
+    - else
+      = render_query_totals(@query)
+      = render partial: 'list'

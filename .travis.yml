@@ -1,0 +1,46 @@
+language: ruby
+
+rvm:
+  - 2.4.4
+  - 2.3.7
+  - 2.2.10
+
+env:
+  - REDMINE_VER=3.4-stable DB=postgresql
+  - REDMINE_VER=master DB=postgresql
+
+sudo: true
+cache: bundler
+
+addons:
+  postgresql: "9.6"
+
+before_install:
+  - export PLUGIN_NAME=redmine_codimd
+  - export REDMINE_GIT_REPO=git://github.com/redmine/redmine.git
+  - export REDMINE_PATH=$HOME/redmine
+  - export BUNDLE_GEMFILE=$REDMINE_PATH/Gemfile
+  - git clone $REDMINE_GIT_REPO $REDMINE_PATH
+  - cd $REDMINE_PATH
+  - if [[ "$REDMINE_VER" != "master" ]]; then git checkout -b $REDMINE_VER origin/$REDMINE_VER; fi
+  - ln -s $TRAVIS_BUILD_DIR $REDMINE_PATH/plugins/$PLUGIN_NAME
+  # get additionals plugin (only master supports Redmine v4)
+  # git clone -b v2-stable git://github.com/alphanodes/additionals.git plugins/additionals
+  - git clone git://github.com/alphanodes/additionals.git $REDMINE_PATH/plugins/additionals
+  - cp $TRAVIS_BUILD_DIR/test/support/additional_environment.rb $REDMINE_PATH/config/
+  - cp $TRAVIS_BUILD_DIR/test/support/database-$DB-travis.yml $REDMINE_PATH/config/database.yml
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  # - bundle exec rake redmine:load_default_data REDMINE_LANG=en
+  # - bundle exec rake db:structure:dump
+  # - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rake redmine:plugins:migrate
+
+script:
+  - export SKIP_COVERAGE=1
+  - if [[ "$REDMINE_VER" == "master" ]]; then bundle exec rake redmine:plugins:test:units NAME=$PLUGIN_NAME; fi
+  - if [[ "$REDMINE_VER" == "master" ]]; then bundle exec rake redmine:plugins:test:functionals NAME=$PLUGIN_NAME; fi
+  - if [[ "$REDMINE_VER" == "master" ]]; then bundle exec rake redmine:plugins:test:integration NAME=$PLUGIN_NAME; fi
+  - if [[ "$REDMINE_VER" != "master" ]]; then bundle exec rake redmine:plugins:test NAME=$PLUGIN_NAME RUBYOPT="-W0"; fi
