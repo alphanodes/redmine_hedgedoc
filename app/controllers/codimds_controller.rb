@@ -10,6 +10,6 @@ class CodimdsController < ApplicationController
   include AdditionalsQueriesHelper
 
   def show
-    @codimd_pads = CodimdPad.get_pads
+    @codimd_pads = CodimdPad.pads
   end
 end

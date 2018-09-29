@@ -1,5 +1,5 @@
 .contextual
-  = link_to l(:label_new_codimd_pad), new_codimd_pad_path, class: 'icon icon-add new-codimd-pad'
+  = link_to l(:label_new_codimd_pad), new_codimd_pad_path, class: 'icon icon-add new-codimd-pad external'
 
 - html_title(l(:label_codimd_pad_plural))
 
@@ -12,8 +12,15 @@ table.list.codimd-pads
       th = l(:field_author)
       th = l(:field_created_on)
       th = l(:field_updated_on)
-      th
   tbody
     - @codimd_pads.each do |t|
       tr class="#{cycle('odd', 'even')}"
-        td = link_to t.name, t.url
+        td = link_to h(t.title), codimd_pad_url(t), class: 'external'
+        td
+          - owner = codimd_pad_owner(t)
+          - if owner.present?
+            = link_to_user(owner)
+          - else
+            = h(t.ownerId)
+        td = format_time(t.createdAt, true, User.current)
+        td = format_time(t.updatedAt, true, User.current)

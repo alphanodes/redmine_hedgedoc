@@ -1,6 +1,7 @@
 class CodimdPad
-  def self.get_pads
-    test = CodimdNote.all
-    []
+  def self.pads
+    CodimdNote.where('title is NOT NULL')
+              .where("permission!='private'")
+              .order(updatedAt: :desc)
   end
 end
