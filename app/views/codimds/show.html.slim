@@ -20,16 +20,16 @@ h2 = l(:label_codimd_pad_plural)
       tbody
         - @codimd_pads.each do |t|
           tr class="#{cycle('odd', 'even')}"
-            td = codimd_pad_link(t, @project)
-            td
+            td.name = codimd_pad_link(t, @project)
+            td.author
               - owner = codimd_pad_owner(t)
               - if owner.present?
                 = link_to_user(owner)
               - else
                 = h(t.ownerId)
-            td = h(t.permission)
-            td = format_time(t.createdAt, true, User.current)
-            td = format_time(t.updatedAt, true, User.current)
+            td.permission = h(t.permission)
+            td.created_on = format_time(t.createdAt, true, User.current)
+            td.updated_on = format_time(t.updatedAt, true, User.current)
 
   span.pagination
     = pagination_links_full @codimd_pad_pages, @codimd_pad_count
