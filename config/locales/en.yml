@@ -6,3 +6,6 @@ en:
   label_show_codimd_in_menu: Show CodiMD in menu
   label_new_codimd_pad: New CodiMD pad
   label_codimd_pad_plural: CodiMD Pads
+  label_switch_to_codimd: Switch to CodiMD
+  label_codimd_list_info_html: Es werden alle eigenen PADs aufgelistet und alle nicht-privaten PADs, welche als PAD Titel eine Redmine Projektkennung verwenden. Wenn man in Redmine Zugriff auf die Projekte mit dieser Projektkennung besitzt, werden diese PADs angezeigt.<br />Informieren Sie Ihre CodiMD Benutzer, dass PADs mit einem Projektpräfix automatisch in Redmine gelistet werden, sofern der Autor ein Redmine Benutzer ist.
+  label_codimd_project_list_info_html: 'Es werden alle PADs mit dem Präfix "%{prefix}" aufgelistet, welche nicht als privat markiert sind (z.B. "%{prefix}: Mein PAD").<br />Informieren Sie Ihre CodiMD Benutzer, dass PADs mit diesem Projektpräfix automatisch in Redmine gelistet werden, sofern der Autor ein Redmine Benutzer werden.'

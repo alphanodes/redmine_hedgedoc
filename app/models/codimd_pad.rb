@@ -1,5 +1,6 @@
 class CodimdPad
   def self.pads
+    prefixes = CodimdPad.project_identifier
     CodimdNote.joins(:User)
               .where('title is NOT NULL')
               .where('email is NOT NULL')
@@ -16,5 +17,10 @@ class CodimdPad
     end
 
     keys
+  end
+
+  # Get all project identifier of the current user
+  def self.project_identifier
+    Project.where(Project.allowed_to_condition(User.current, :show_codimd_pads)).pluck(:identifier)
   end
 end

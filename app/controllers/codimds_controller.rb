@@ -1,5 +1,6 @@
 class CodimdsController < ApplicationController
   before_action :require_login
+  before_action :find_optional_project, only: %i[show]
 
   rescue_from Query::StatementInvalid, with: :query_statement_invalid
 
@@ -11,6 +12,8 @@ class CodimdsController < ApplicationController
 
   helper :sort
   include SortHelper
+
+  menu_item :codimds
 
   def show
     sort_init 'updatedAt', 'desc'
