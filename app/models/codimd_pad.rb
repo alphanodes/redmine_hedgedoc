@@ -1,12 +1,36 @@
 class CodimdPad
-  def self.pads
-    prefixes = CodimdPad.project_identifier
-    CodimdNote.joins(:User)
-              .where('title is NOT NULL')
-              .where('email is NOT NULL')
-              .where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+  # find pads (private pads and prefixed project pads)
+  # prefix is defined: "project_identifier: "
+  # e.g. ["open", "test_projekt"]
+  def self.pads(project)
+    scope = CodimdNote.joins(:User)
+                      .where('title is NOT NULL')
+                      .where('email is NOT NULL')
+
+    scope = if project
+              scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+                   .where('LOWER(title) LIKE ?', "#{project.identifier}:%")
+            else
+              prefixes = CodimdPad.project_identifier
+              scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+
+              sql = "(permission='private' AND email IN(:mails))"
+              if prefixes.present?
+                scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+                sql << " OR (permission!='private' AND ("
+                prefix_line = []
+                prefixes.each do |prefix|
+                  prefix_line << "LOWER(title) LIKE '#{prefix}:%'"
+                end
+                sql << prefix_line.join(' OR ')
+                sql << '))'
+              end
+              scope.where(sql, mails: User.current.mails)
+            end
+    scope
   end
 
+  # Fix problem with PostgreSQL table names and sort_clause method
   def self.fix_sort_clause(sort_clause)
     keys = []
     sort_clause.each do |f|

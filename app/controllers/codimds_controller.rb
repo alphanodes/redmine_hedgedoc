@@ -21,7 +21,7 @@ class CodimdsController < ApplicationController
 
     @limit = per_page_option
 
-    scope = CodimdPad.pads
+    scope = CodimdPad.pads(@project)
 
     @codimd_pad_count = scope.count
     @codimd_pad_pages = Paginator.new @codimd_pad_count, @limit, params['page']

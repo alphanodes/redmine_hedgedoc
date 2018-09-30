@@ -9,3 +9,4 @@ de:
   label_switch_to_codimd: Zu CodiMD wechseln
   label_codimd_list_info_html: 'Es werden alle eigenen PADs aufgelistet und alle nicht-privaten PADs, welche als PAD Titel eine Redmine Projektkennung als Präfix verwenden (z.B. "testprojekt: Mein PAD"). Wenn man in Redmine Zugriff auf die Projekte mit dieser Projektkennung besitzt, werden diese PADs angezeigt.<br />Informieren Sie Ihre CodiMD Benutzer, dass PADs mit einem Projektpräfix automatisch in Redmine gelistet werden, sofern der Autor ein Redmine Benutzer ist.'
   label_codimd_project_list_info_html: 'Es werden alle PADs mit dem Präfix "%{prefix}" aufgelistet, welche nicht als privat markiert sind (z.B. "%{prefix}: Mein PAD").<br />Informieren Sie Ihre CodiMD Benutzer, dass PADs mit diesem Projektpräfix automatisch in Redmine gelistet werden, sofern der Autor ein Redmine Benutzer werden.'
+  field_codimd_permission: Berechtigung

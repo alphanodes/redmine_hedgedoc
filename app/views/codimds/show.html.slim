@@ -14,6 +14,7 @@ h2 = l(:label_codimd_pad_plural)
         tr
           = sort_header_tag('title', caption: l(:field_name))
           th = l(:field_author)
+          = sort_header_tag('permission', caption: l(:field_codimd_permission))
           = sort_header_tag('createdAt', caption: l(:field_created_on))
           = sort_header_tag('updatedAt', caption: l(:field_updated_on))
       tbody
@@ -26,6 +27,7 @@ h2 = l(:label_codimd_pad_plural)
                 = link_to_user(owner)
               - else
                 = h(t.ownerId)
+            td = h(t.permission)
             td = format_time(t.createdAt, true, User.current)
             td = format_time(t.updatedAt, true, User.current)
 

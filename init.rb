@@ -35,7 +35,7 @@ Redmine::Plugin.register :redmine_codimd do
        { controller: 'codimds', action: 'show', project_id: nil },
        caption: :project_module_codimd,
        if: (proc do
-         User.current.allowed_to?({ controller: 'codimds', action: 'ishow' }, nil, global: true) &&
+         User.current.allowed_to?({ controller: 'codimds', action: 'show' }, nil, global: true) &&
          RedmineCodimd.settings[:codimd_in_menu] == 'app'
        end)
   menu :project_menu,
