@@ -1,6 +1,6 @@
 require File.expand_path('../../test_helper', __FILE__)
 
-class I18nTest < ActiveSupport::TestCase
+class I18nTest < RedmineCodimd::TestCase
   include Redmine::I18n
 
   def setup
@@ -28,9 +28,9 @@ class I18nTest < ActiveSupport::TestCase
     end
     # check if parse error exists
     ::I18n.locale = 'de'
-    assert_equal 'Externe URLs', l(:label_external_urls)
+    assert_equal 'Neues CodiMD Pad', l(:label_new_codimd_pad)
     ::I18n.locale = 'en'
-    assert_equal 'External urls', l(:label_external_urls)
+    assert_equal 'New CodiMD pad', l(:label_new_codimd_pad)
 
     set_language_if_valid('en')
   end
