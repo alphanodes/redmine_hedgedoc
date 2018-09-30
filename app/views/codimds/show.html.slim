@@ -20,7 +20,7 @@ h2 = l(:label_codimd_pad_plural)
       tbody
         - @codimd_pads.each do |t|
           tr class="#{cycle('odd', 'even')}"
-            td = link_to h(t.title), codimd_pad_url(t), class: 'external'
+            td = codimd_pad_link(t, @project)
             td
               - owner = codimd_pad_owner(t)
               - if owner.present?
