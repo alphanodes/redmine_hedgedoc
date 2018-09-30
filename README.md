@@ -6,7 +6,7 @@ CodiMD plugin for Redmine
 Features
 --------
 
-* Show list of own CodiMD pads in [Redmine](https://www.redmine.org/)
+* Show list of own [CodiMD](https://github.com/hackmdio/codimd) pads in [Redmine](https://www.redmine.org/)
 * Show CodiMD pads in [Redmine](https://www.redmine.org/) projects, if pad name has redmine identifier as prefix. Eg. MyProject: MyPad
 
 
@@ -35,7 +35,7 @@ Restart Redmine (application server) and you should see the plugin show up in th
 Configuration
 -------------
 
-Redmine needs access to CodiMD database. Add in your config/database.yml an paragraph names "codimd", e.g.
+Redmine needs access to [CodiMD](https://github.com/hackmdio/codimd) database. Add in your config/database.yml an paragraph names "codimd", e.g.
 
     codimd:
       adapter: postgresql
