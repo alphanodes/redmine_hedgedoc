@@ -2,12 +2,12 @@ test:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: travis_ci_test
+  database: redmine_travis
   user: postgres
 
 codimd:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: travis_ci_test
+  database: codimd_travis
   user: postgres
