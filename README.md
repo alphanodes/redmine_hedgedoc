@@ -6,8 +6,8 @@ CodiMD plugin for Redmine
 Features
 --------
 
-* Show own CodiMD pads in redmine
-* Show CodiMD pads in redmine projects, if pad name has redmine identifier as prefix
+* Show list of own CodiMD pads in [Redmine](https://www.redmine.org/)
+* Show CodiMD pads in [Redmine](https://www.redmine.org/) projects, if pad name has redmine identifier as prefix. Eg. MyProject: MyPad
 
 
 Requirements
@@ -54,7 +54,6 @@ Uninstall
 Uninstall ``redmine_codimd``
 
     cd $REDMINE_ROOT
-    bundle exec rake redmine:plugins:migrate NAME=redmine_codimd VERSION=0 RAILS_ENV=production
     rm -rf plugins/redmine_codimd
 
 Restart Redmine (application server)
