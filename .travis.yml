@@ -31,7 +31,7 @@ before_install:
 before_script:
   - psql -c 'create database redmine_travis;' -U postgres
   - psql -c 'create database codimd_travis;' -U postgres
-  - pg_restore --no-owner -d codimd_travis TRAVIS_BUILD_DIR/test/support/codimd.dump
+  - pg_restore --no-owner -d codimd_travis $TRAVIS_BUILD_DIR/test/support/codimd.dump
   - bundle exec rake db:migrate
   - bundle exec rake redmine:plugins:migrate
 
