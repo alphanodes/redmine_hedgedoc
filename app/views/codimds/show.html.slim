@@ -28,8 +28,8 @@ h2 = l(:label_codimd_pad_plural)
               - else
                 = h(t.ownerId)
             td.permission = h(t.permission)
-            td.created_on = format_time(t.createdAt, true, User.current)
-            td.updated_on = format_time(t.updatedAt, true, User.current)
+            td.created_on = time_tag(t.createdAt)
+            td.updated_on = time_tag(t.updatedAt)
 
   span.pagination
     = pagination_links_full @codimd_pad_pages, @codimd_pad_count
