@@ -1,7 +1,7 @@
 CodiMD plugin for Redmine
 ==================================
 
-[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=fla)](https://www.redmine.org/plugins/redmine_codimd)
+[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=fla)](https://www.redmine.org/plugins/redmine_codimd) [![Build Status](https://travis-ci.org/AlphaNodes/redmine_codimd.svg?branch=master)](https://travis-ci.org/AlphaNodes/redmine_codimd)
 
 Features
 --------
