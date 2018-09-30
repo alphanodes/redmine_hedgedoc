@@ -8,5 +8,5 @@ en:
   label_codimd_pad_plural: CodiMD Pads
   label_switch_to_codimd: Switch to CodiMD
   label_codimd_list_info_html: '<strong>Important:</strong> All your own PADs and all non-private PADs are listed here if they use a Redmine project identifier as prefix in the PAD title (e.g. "testprojekt: My PAD"). If you have access in Redmine to the projects with this project identifier, these PADs will be displayed to <em>all</em> project members.<br />Inform your CodiMD users that PADs with a correct project prefix are automatically listed in Redmine if the author is also a Redmine user.'
-  label_codimd_project_list_info_html: '<strong>Important:</strong> Lists all PADs with the prefix "%{prefix}" that are not marked as private (e.g. "%{prefix}: My PAD").<br />Inform your CodiMD users that PADs with this project prefix will automatically be listed in Redmine if the author is also a Redmine user.'
+  label_codimd_project_list_info_html: '<strong>Important:</strong> Lists all PADs with the prefix "%{prefix}" that are not marked as private or they are your own (e.g. "%{prefix}: My PAD").<br />Inform your CodiMD users that PADs with this project prefix will automatically be listed in Redmine if the author is also a Redmine user.'
   field_codimd_permission: Permission
