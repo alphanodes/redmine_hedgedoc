@@ -14,9 +14,9 @@ class CodimdPad
               prefixes = CodimdPad.project_identifier
               scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
 
-              sql = "(permission='private' AND email IN(:mails))"
               if prefixes.present?
                 scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+                sql = '(email IN(:mails))'
                 sql << " OR (permission!='private' AND ("
                 prefix_line = []
                 prefixes.each do |prefix|
