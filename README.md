@@ -10,13 +10,17 @@ Features
 * Show CodiMD pads in [Redmine](https://www.redmine.org/) projects, if pad name has redmine identifier as prefix. Eg. MyProject: MyPad
 
 
-Requirements
-------------
+Redmine Requirements
+--------------------
 
 * Redmine version >= 3.4.0
 * Redmine Plugin: [additionals](https://github.com/alphanodes/additionals)
 * Ruby version >= 2.2.0
 
+CodiMD Requirements
+-------------------
+* CodiMD version: all
+* E-Mail authentification
 
 Installation
 ------------
