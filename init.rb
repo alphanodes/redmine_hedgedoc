@@ -7,7 +7,6 @@ Redmine::Plugin.register :redmine_codimd do
   version '1.0.0'
   author 'AlphaNodes GmbH'
   author_url 'https://alphanodes.com/'
-  requires_redmine version_or_higher: '3.4.0'
 
   begin
     requires_redmine_plugin :additionals, version_or_higher: '2.0.14'
