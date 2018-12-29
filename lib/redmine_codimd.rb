@@ -11,11 +11,7 @@ module RedmineCodimd
     end
 
     def settings
-      if Rails.version >= '5.2'
-        Setting[:plugin_redmine_codimd]
-      else
-        ActionController::Parameters.new(Setting[:plugin_redmine_codimd])
-      end
+      Additionals.settings_compatible(:plugin_redmine_codimd)
     end
 
     def setting?(value)
