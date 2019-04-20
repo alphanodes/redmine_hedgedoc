@@ -44,7 +44,7 @@ class CodimdsControllerTest < RedmineCodimd::ControllerTest
     @request.session[:user_id] = nil
     get :show
 
-    assert_response 302
+    assert_response :redirect
   end
 
   def test_no_access_to_show_without_permission
