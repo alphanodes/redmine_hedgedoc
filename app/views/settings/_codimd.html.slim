@@ -1,8 +1,7 @@
 - @settings = ActionController::Parameters.new(@settings) unless Rails.version >= '5.2'
 
 p
-  = label_tag 'settings[codimd_url]', t(:label_codimd_url)
-  = text_field_tag 'settings[codimd_url]', @settings[:codimd_url], size: 50, placeholder: 'https://url-to-your-codimd'
+  = additionals_settings_textfield :codimd_url, size: 50, placeholder: 'https://url-to-your-codimd'
 
 p
   = label_tag 'settings[codimd_in_menu]', l(:label_show_codimd_in_menu)
