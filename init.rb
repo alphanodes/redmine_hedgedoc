@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_codimd do
   name 'Redmine CodiMD'
   url 'https://github.com/alphanodes/redmine_codimd'
   description 'Redmine plugin for CodiMD integration'
-  version '1.0.0'
+  version '1.0.1'
   author 'AlphaNodes GmbH'
   author_url 'https://alphanodes.com/'
 

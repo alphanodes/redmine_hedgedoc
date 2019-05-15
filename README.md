@@ -15,7 +15,7 @@ Redmine Requirements
 
 * Redmine version >= 3.4.0
 * Redmine Plugin: [additionals](https://github.com/alphanodes/additionals)
-* Ruby version >= 2.2.0
+* Ruby version >= 2.3.0
 
 CodiMD Requirements
 -------------------
