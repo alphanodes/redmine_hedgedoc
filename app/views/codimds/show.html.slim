@@ -1,7 +1,7 @@
 .contextual
   = link_to l(:label_new_codimd_pad), new_codimd_pad_path, class: 'icon icon-add new-codimd-pad external'
   = link_to font_awesome_icon('fas_file-alt', post_text: l(:label_switch_to_codimd)),
-            RedmineCodimd.settings[:codimd_url], class: 'icon icon-codimd external'
+            RedmineCodimd.setting(:codimd_url), class: 'icon icon-codimd external'
 
 - html_title(l(:label_codimd_pad_plural))
 

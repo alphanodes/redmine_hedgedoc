@@ -1,10 +1,10 @@
 module CodimdsHelper
   def new_codimd_pad_path
-    "#{RedmineCodimd.settings[:codimd_url]}/new"
+    "#{RedmineCodimd.setting(:codimd_url)}/new"
   end
 
   def codimd_pad_url(note)
-    "#{RedmineCodimd.settings[:codimd_url]}/#{note.shortid}"
+    "#{RedmineCodimd.setting(:codimd_url)}/#{note.shortid}"
   end
 
   def codimd_pad_owner(note)

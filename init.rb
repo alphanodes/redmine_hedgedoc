@@ -27,7 +27,7 @@ Redmine::Plugin.register :redmine_codimd do
        caption: :project_module_codimd,
        if: (proc do
          User.current.allowed_to?({ controller: 'codimds', action: 'show' }, nil, global: true) &&
-         RedmineCodimd.settings[:codimd_in_menu] == 'top'
+         RedmineCodimd.setting(:codimd_in_menu) == 'top'
        end)
   menu :application_menu,
        :codimd,
@@ -35,7 +35,7 @@ Redmine::Plugin.register :redmine_codimd do
        caption: :project_module_codimd,
        if: (proc do
          User.current.allowed_to?({ controller: 'codimds', action: 'show' }, nil, global: true) &&
-         RedmineCodimd.settings[:codimd_in_menu] == 'app'
+         RedmineCodimd.setting(:codimd_in_menu) == 'app'
        end)
   menu :project_menu,
        :codimds,
