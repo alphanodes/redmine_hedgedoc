@@ -1,25 +1,33 @@
 language: ruby
+dist: xenial
 
 rvm:
-  - 2.5.3
-  - 2.4.5
-  - 2.3.8
+  - 2.6.3
+  - 2.5.5
+  - 2.4.6
+
+services:
+  - postgresql
 
 env:
   - REDMINE_VER=4.0-stable DB=postgresql
   - REDMINE_VER=3.4-stable DB=postgresql
 
 sudo: true
-cache: bundler
 
-addons:
-  postgresql: "9.6"
+matrix:
+  exclude:
+  - rvm: 2.6.3
+    env: REDMINE_VER=3.4-stable DB=postgresql
+  - rvm: 2.5.5
+    env: REDMINE_VER=3.4-stable DB=postgresql
 
 before_install:
   - export PLUGIN_NAME=redmine_codimd
   - export REDMINE_GIT_REPO=git://github.com/redmine/redmine.git
   - export REDMINE_PATH=$HOME/redmine
   - export BUNDLE_GEMFILE=$REDMINE_PATH/Gemfile
+  - export RAILS_ENV=test
   - git clone $REDMINE_GIT_REPO $REDMINE_PATH
   - cd $REDMINE_PATH
   - if [[ "$REDMINE_VER" != "master" ]]; then git checkout -b $REDMINE_VER origin/$REDMINE_VER; fi
@@ -29,11 +37,9 @@ before_install:
   - cp $TRAVIS_BUILD_DIR/test/support/database-$DB-travis.yml $REDMINE_PATH/config/database.yml
 
 before_script:
-  - psql -c 'create database redmine_travis;' -U postgres
-  - psql -c 'create database codimd_travis;' -U postgres
+  - bundle exec rake db:create:all
   - psql codimd_travis < $TRAVIS_BUILD_DIR/test/support/codimd.sql
-  - bundle exec rake db:migrate
-  - bundle exec rake redmine:plugins:migrate
+  - bundle exec rake db:migrate redmine:plugins:migrate
 
 script:
   - export SKIP_COVERAGE=1
