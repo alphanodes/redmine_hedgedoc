@@ -3,9 +3,6 @@ module RedmineCodimd
     include Additionals::Helpers
 
     def setup
-      # Patches
-      Additionals.patch(%w[QueriesHelper], 'redmine_codimd')
-
       # Helper
       SettingsController.send :helper, CodimdsHelper
     end
