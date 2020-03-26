@@ -5,7 +5,7 @@ class CodimdPad
   def self.pads(project)
     scope = CodimdNote.joins(:User)
                       .where.not(title: nil)
-                      .where.not(email: nil)
+                      .where('email is NOT NULL')
 
     scope = if project
               scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
