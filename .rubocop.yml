@@ -1,3 +1,7 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
 Rails:
   Enabled: true
 
@@ -6,10 +10,10 @@ AllCops:
   TargetRailsVersion: 5.2
 
 Metrics/AbcSize:
-  Max: 65
+  Enabled: false
 
 Metrics/BlockLength:
-  Max: 60
+  Enabled: false
 
 Metrics/ClassLength:
   Enabled: false
@@ -17,7 +21,7 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 20
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 140
 
 Metrics/MethodLength:
@@ -29,15 +33,23 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 25
 
-Rails/SkipsModelValidations:
+Rails/ApplicationJob:
+  Enabled: false
+
+Rails/ApplicationRecord:
   Enabled: false
 
 Rails/CreateTableWithTimestamps:
   Enabled: false
 
-# we drop this, if we drop Rails 4.2 support
-Rails/ApplicationRecord:
-    Enabled: false
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Performance/ChainArrayAllocation:
+  Enabled: true
 
 Style/AutoResourceCleanup:
   Enabled: true
@@ -48,5 +60,15 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
+# required for travis/ci (symbolic links problem)
 Style/ExpandPathArguments:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
   Enabled: false

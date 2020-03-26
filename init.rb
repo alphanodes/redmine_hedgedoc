@@ -4,12 +4,12 @@ Redmine::Plugin.register :redmine_codimd do
   name 'Redmine CodiMD'
   url 'https://github.com/alphanodes/redmine_codimd'
   description 'Redmine plugin for CodiMD integration'
-  version '1.0.1'
+  version '1.0.2'
   author 'AlphaNodes GmbH'
   author_url 'https://alphanodes.com/'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '2.0.22'
+    requires_redmine_plugin :additionals, version_or_higher: '2.0.23'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end

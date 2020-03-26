@@ -1,19 +1,19 @@
 CodiMD plugin for Redmine
 ==================================
 
-[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=fla)](https://www.redmine.org/plugins/redmine_codimd) [![Build Status](https://travis-ci.org/AlphaNodes/redmine_codimd.svg?branch=master)](https://travis-ci.org/AlphaNodes/redmine_codimd)
+[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=fla)](https://www.redmine.org/plugins/redmine_codimd) [![Build Status](https://travis-ci.org/AlphaNodes/redmine_codimd.svg?branch=master)](https://travis-ci.org/AlphaNodes/redmine_codimd) ![Run RuboCop](https://github.com/AlphaNodes/redmine_codimd/workflows/Run%20RuboCop/badge.svg)
 
 Features
 --------
 
-* Show list of own [CodiMD](https://github.com/hackmdio/codimd) pads in [Redmine](https://www.redmine.org/)
+* Show list of own [CodiMD](https://github.com/codimd/server) pads in [Redmine](https://www.redmine.org/)
 * Show CodiMD pads in [Redmine](https://www.redmine.org/) projects, if pad name has redmine identifier as prefix. Eg. MyProject: MyPad
 
 
 Redmine Requirements
 --------------------
 
-* Redmine version >= 3.4.0
+* Redmine version >= 4.0
 * Redmine Plugin: [additionals](https://github.com/alphanodes/additionals)
 * Ruby version >= 2.3.0
 
@@ -39,7 +39,7 @@ Restart Redmine (application server) and you should see the plugin show up in th
 Configuration
 -------------
 
-Redmine needs access to [CodiMD](https://github.com/hackmdio/codimd) database. Add in your config/database.yml an paragraph names "codimd", e.g.
+Redmine needs access to [CodiMD](https://github.com/codimd/server) database. Add in your config/database.yml an paragraph names "codimd", e.g.
 
     codimd:
       adapter: postgresql
