@@ -1,5 +1,3 @@
-require_dependency 'redmine_codimd'
-
 Redmine::Plugin.register :redmine_codimd do
   name 'Redmine CodiMD'
   url 'https://github.com/alphanodes/redmine_codimd'
