@@ -42,12 +42,6 @@ Redmine::Plugin.register :redmine_codimd do
        param: :project_id
 end
 
-begin
-  if ActiveRecord::Base.connection.table_exists?(Setting.table_name)
-    Rails.configuration.to_prepare do
-      RedmineCodimd.setup
-    end
-  end
-rescue ActiveRecord::NoDatabaseError
-  Rails.logger.error 'database not created yet'
+Rails.configuration.to_prepare do
+  RedmineCodimd.setup
 end
