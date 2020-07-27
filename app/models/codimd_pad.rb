@@ -7,27 +7,26 @@ class CodimdPad
                       .where.not(title: nil)
                       .where('email is NOT NULL')
 
-    scope = if project
-              scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
-                   .where('LOWER(title) LIKE ?', "#{project.identifier}:%")
-            else
-              prefixes = CodimdPad.project_identifier
-              scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+    if project
+      scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+           .where('LOWER(title) LIKE ?', "#{project.identifier}:%")
+    else
+      prefixes = CodimdPad.project_identifier
+      scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
 
-              if prefixes.present?
-                scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
-                sql = '(email IN(:mails))'
-                sql << " OR (permission!='private' AND ("
-                prefix_line = []
-                prefixes.each do |prefix|
-                  prefix_line << "LOWER(title) LIKE '#{prefix}:%'"
-                end
-                sql << prefix_line.join(' OR ')
-                sql << '))'
-              end
-              scope.where(sql, mails: User.current.mails)
-            end
-    scope
+      if prefixes.present?
+        scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+        sql = '(email IN(:mails))'
+        sql << " OR (permission!='private' AND ("
+        prefix_line = []
+        prefixes.each do |prefix|
+          prefix_line << "LOWER(title) LIKE '#{prefix}:%'"
+        end
+        sql << prefix_line.join(' OR ')
+        sql << '))'
+      end
+      scope.where(sql, mails: User.current.mails)
+    end
   end
 
   # Fix problem with PostgreSQL table names and sort_clause method
