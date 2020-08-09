@@ -19,7 +19,7 @@ h2 = font_awesome_icon('fas_file-alt', post_text: l(:label_codimd_pad_plural))
           = sort_header_tag('updatedAt', caption: l(:field_updated_on))
       tbody
         - @codimd_pads.each do |t|
-          tr class="#{cycle('odd', 'even')}"
+          tr class="#{cycle 'odd', 'even'}"
             td.name = codimd_pad_link(t, @project)
             td.author
               - owner = codimd_pad_owner(t)
@@ -34,14 +34,13 @@ h2 = font_awesome_icon('fas_file-alt', post_text: l(:label_codimd_pad_plural))
   span.pagination
     = pagination_links_full @codimd_pad_pages, @codimd_pad_count
 - else
-  p.nodata
-    = l(:label_no_data)
+  p.nodata = l :label_no_data
 
 br
 
 div
   em.info
     - if @project
-      = t(:label_codimd_project_list_info_html, prefix: @project.identifier)
+      = t :label_codimd_project_list_info_html, prefix: @project.identifier
     - else
-      = t(:label_codimd_list_info_html)
+      = t :label_codimd_list_info_html
