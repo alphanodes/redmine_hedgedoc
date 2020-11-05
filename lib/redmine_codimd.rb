@@ -17,13 +17,13 @@ module RedmineCodimd
     end
 
     def setting?(value)
-      Additionals.true?(settings[value])
+      Additionals.true? settings[value]
     end
 
     private
 
     def settings
-      Additionals.settings_compatible(:plugin_redmine_codimd)
+      Setting[:plugin_redmine_codimd]
     end
   end
 end
