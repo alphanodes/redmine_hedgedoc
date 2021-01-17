@@ -16,21 +16,21 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: enum_Notes_permission; Type: TYPE; Schema: public; Owner: codimd
+-- Name: enum_Notes_permission; Type: TYPE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TYPE public."enum_Notes_permission" AS ENUM (
@@ -43,14 +43,14 @@ CREATE TYPE public."enum_Notes_permission" AS ENUM (
 );
 
 
-ALTER TYPE public."enum_Notes_permission" OWNER TO codimd;
+ALTER TYPE public."enum_Notes_permission" OWNER TO hedgedoc;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: Authors; Type: TABLE; Schema: public; Owner: codimd
+-- Name: Authors; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."Authors" (
@@ -63,10 +63,10 @@ CREATE TABLE public."Authors" (
 );
 
 
-ALTER TABLE public."Authors" OWNER TO codimd;
+ALTER TABLE public."Authors" OWNER TO hedgedoc;
 
 --
--- Name: Authors_id_seq; Type: SEQUENCE; Schema: public; Owner: codimd
+-- Name: Authors_id_seq; Type: SEQUENCE; Schema: public; Owner: hedgedoc
 --
 
 CREATE SEQUENCE public."Authors_id_seq"
@@ -77,17 +77,17 @@ CREATE SEQUENCE public."Authors_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."Authors_id_seq" OWNER TO codimd;
+ALTER TABLE public."Authors_id_seq" OWNER TO hedgedoc;
 
 --
--- Name: Authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: codimd
+-- Name: Authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: hedgedoc
 --
 
 ALTER SEQUENCE public."Authors_id_seq" OWNED BY public."Authors".id;
 
 
 --
--- Name: Notes; Type: TABLE; Schema: public; Owner: codimd
+-- Name: Notes; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."Notes" (
@@ -109,10 +109,10 @@ CREATE TABLE public."Notes" (
 );
 
 
-ALTER TABLE public."Notes" OWNER TO codimd;
+ALTER TABLE public."Notes" OWNER TO hedgedoc;
 
 --
--- Name: Revisions; Type: TABLE; Schema: public; Owner: codimd
+-- Name: Revisions; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."Revisions" (
@@ -128,10 +128,10 @@ CREATE TABLE public."Revisions" (
 );
 
 
-ALTER TABLE public."Revisions" OWNER TO codimd;
+ALTER TABLE public."Revisions" OWNER TO hedgedoc;
 
 --
--- Name: SequelizeMeta; Type: TABLE; Schema: public; Owner: codimd
+-- Name: SequelizeMeta; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."SequelizeMeta" (
@@ -139,10 +139,10 @@ CREATE TABLE public."SequelizeMeta" (
 );
 
 
-ALTER TABLE public."SequelizeMeta" OWNER TO codimd;
+ALTER TABLE public."SequelizeMeta" OWNER TO hedgedoc;
 
 --
--- Name: Sessions; Type: TABLE; Schema: public; Owner: codimd
+-- Name: Sessions; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."Sessions" (
@@ -154,10 +154,10 @@ CREATE TABLE public."Sessions" (
 );
 
 
-ALTER TABLE public."Sessions" OWNER TO codimd;
+ALTER TABLE public."Sessions" OWNER TO hedgedoc;
 
 --
--- Name: Temp; Type: TABLE; Schema: public; Owner: codimd
+-- Name: Temp; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."Temp" (
@@ -168,10 +168,10 @@ CREATE TABLE public."Temp" (
 );
 
 
-ALTER TABLE public."Temp" OWNER TO codimd;
+ALTER TABLE public."Temp" OWNER TO hedgedoc;
 
 --
--- Name: Temps; Type: TABLE; Schema: public; Owner: codimd
+-- Name: Temps; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."Temps" (
@@ -182,10 +182,10 @@ CREATE TABLE public."Temps" (
 );
 
 
-ALTER TABLE public."Temps" OWNER TO codimd;
+ALTER TABLE public."Temps" OWNER TO hedgedoc;
 
 --
--- Name: Users; Type: TABLE; Schema: public; Owner: codimd
+-- Name: Users; Type: TABLE; Schema: public; Owner: hedgedoc
 --
 
 CREATE TABLE public."Users" (
@@ -203,17 +203,17 @@ CREATE TABLE public."Users" (
 );
 
 
-ALTER TABLE public."Users" OWNER TO codimd;
+ALTER TABLE public."Users" OWNER TO hedgedoc;
 
 --
--- Name: Authors id; Type: DEFAULT; Schema: public; Owner: codimd
+-- Name: Authors id; Type: DEFAULT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Authors" ALTER COLUMN id SET DEFAULT nextval('public."Authors_id_seq"'::regclass);
 
 
 --
--- Name: Authors Authors_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Authors Authors_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Authors"
@@ -221,7 +221,7 @@ ALTER TABLE ONLY public."Authors"
 
 
 --
--- Name: Notes Notes_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Notes Notes_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Notes"
@@ -229,7 +229,7 @@ ALTER TABLE ONLY public."Notes"
 
 
 --
--- Name: Revisions Revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Revisions Revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Revisions"
@@ -237,7 +237,7 @@ ALTER TABLE ONLY public."Revisions"
 
 
 --
--- Name: SequelizeMeta SequelizeMeta_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: SequelizeMeta SequelizeMeta_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."SequelizeMeta"
@@ -245,7 +245,7 @@ ALTER TABLE ONLY public."SequelizeMeta"
 
 
 --
--- Name: Sessions Sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Sessions Sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Sessions"
@@ -253,7 +253,7 @@ ALTER TABLE ONLY public."Sessions"
 
 
 --
--- Name: Temp Temp_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Temp Temp_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Temp"
@@ -261,7 +261,7 @@ ALTER TABLE ONLY public."Temp"
 
 
 --
--- Name: Temps Temps_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Temps Temps_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Temps"
@@ -269,7 +269,7 @@ ALTER TABLE ONLY public."Temps"
 
 
 --
--- Name: Users Users_pkey; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Users Users_pkey; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Users"
@@ -277,7 +277,7 @@ ALTER TABLE ONLY public."Users"
 
 
 --
--- Name: Users Users_profileid_key; Type: CONSTRAINT; Schema: public; Owner: codimd
+-- Name: Users Users_profileid_key; Type: CONSTRAINT; Schema: public; Owner: hedgedoc
 --
 
 ALTER TABLE ONLY public."Users"
@@ -285,21 +285,21 @@ ALTER TABLE ONLY public."Users"
 
 
 --
--- Name: authors_note_id_user_id; Type: INDEX; Schema: public; Owner: codimd
+-- Name: authors_note_id_user_id; Type: INDEX; Schema: public; Owner: hedgedoc
 --
 
 CREATE UNIQUE INDEX authors_note_id_user_id ON public."Authors" USING btree ("noteId", "userId");
 
 
 --
--- Name: notes_alias; Type: INDEX; Schema: public; Owner: codimd
+-- Name: notes_alias; Type: INDEX; Schema: public; Owner: hedgedoc
 --
 
 CREATE UNIQUE INDEX notes_alias ON public."Notes" USING btree (alias);
 
 
 --
--- Name: notes_shortid; Type: INDEX; Schema: public; Owner: codimd
+-- Name: notes_shortid; Type: INDEX; Schema: public; Owner: hedgedoc
 --
 
 CREATE UNIQUE INDEX notes_shortid ON public."Notes" USING btree (shortid);

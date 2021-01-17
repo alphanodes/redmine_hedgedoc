@@ -1,12 +1,12 @@
 en:
-  permission_show_codimd_pads: Show CodiMD pads
-  permission_import_codimd_pads: Import CodiMD pads
-  project_module_codimd: CodiMD
-  label_codimd_url: CodiMD URL
-  label_show_codimd_in_menu: Show CodiMD in menu
-  label_new_codimd_pad: New CodiMD pad
-  label_codimd_pad_plural: CodiMD Pads
-  label_switch_to_codimd: Switch to CodiMD
-  label_codimd_list_info_html: '<strong>Important:</strong> All your own PADs and all non-private PADs are listed here if they use a Redmine project identifier as prefix in the PAD title (e.g. "testprojekt: My PAD"). If you have access in Redmine to the projects with this project identifier, these PADs will be displayed to <em>all</em> project members.<br />Inform your CodiMD users that PADs with a correct project prefix are automatically listed in Redmine if the author is also a Redmine user.'
-  label_codimd_project_list_info_html: '<strong>Important:</strong> Lists all PADs with the prefix "%{prefix}" that are not marked as private or they are your own (e.g. "%{prefix}: My PAD").<br />Inform your CodiMD users that PADs with this project prefix will automatically be listed in Redmine if the author is also a Redmine user.'
-  field_codimd_permission: Permission
+  permission_show_hedgedoc_pads: Show HedgeDoc pads
+  permission_import_hedgedoc_pads: Import HedgeDoc pads
+  project_module_hedgedoc: HedgeDoc
+  label_hedgedoc_url: HedgeDoc URL
+  label_show_hedgedoc_in_menu: Show HedgeDoc in menu
+  label_new_hedgedoc_pad: New HedgeDoc pad
+  label_hedgedoc_pad_plural: HedgeDoc Pads
+  label_switch_to_hedgedoc: Switch to HedgeDoc
+  label_hedgedoc_list_info_html: '<strong>Important:</strong> All your own PADs and all non-private PADs are listed here if they use a Redmine project identifier as prefix in the PAD title (e.g. "testprojekt: My PAD"). If you have access in Redmine to the projects with this project identifier, these PADs will be displayed to <em>all</em> project members.<br />Inform your HedgeDoc users that PADs with a correct project prefix are automatically listed in Redmine if the author is also a Redmine user.'
+  label_hedgedoc_project_list_info_html: '<strong>Important:</strong> Lists all PADs with the prefix "%{prefix}" that are not marked as private or they are your own (e.g. "%{prefix}: My PAD").<br />Inform your HedgeDoc users that PADs with this project prefix will automatically be listed in Redmine if the author is also a Redmine user.'
+  field_hedgedoc_permission: Permission

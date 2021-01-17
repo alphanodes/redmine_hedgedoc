@@ -1,0 +1,7 @@
+p
+  = additionals_settings_textfield :hedgedoc_url, size: 50, placeholder: 'https://url-to-your-hedgedoc'
+
+p
+  = label_tag 'settings[hedgedoc_in_menu]', l(:label_show_hedgedoc_in_menu)
+  = select_tag 'settings[hedgedoc_in_menu]',
+               options_for_menu_select(@settings[:hedgedoc_in_menu])

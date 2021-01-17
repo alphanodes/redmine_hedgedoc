@@ -1,7 +1,13 @@
 Changelog
 =========
 
-v1.02
+v1.0.3
+------
+
+- Rename CodiMD to HedgeDoc
+- Move from travis to Github actions
+
+v1.0.2
 ------
 
 - CodiMD url updated

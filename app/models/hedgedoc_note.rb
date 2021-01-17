@@ -1,8 +1,8 @@
-class CodimdNote < ActiveRecord::Base
-  include CodimdDatabase
+class HedgedocNote < ActiveRecord::Base
+  include HedgedocDatabase
   self.table_name = 'Notes'
 
-  belongs_to :User, class_name: 'CodimdUser', foreign_key: 'ownerId', inverse_of: false
+  belongs_to :User, class_name: 'HedgedocUser', foreign_key: 'ownerId', inverse_of: false
 
   # id
   # ownerId

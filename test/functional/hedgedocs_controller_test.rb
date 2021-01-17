@@ -1,6 +1,6 @@
 require File.expand_path '../../test_helper', __FILE__
 
-class CodimdsControllerTest < RedmineCodimd::ControllerTest
+class HedgedocsControllerTest < RedmineHedgedoc::ControllerTest
   fixtures :projects,
            :users, :email_addresses, :user_preferences,
            :roles,
@@ -19,7 +19,7 @@ class CodimdsControllerTest < RedmineCodimd::ControllerTest
     get :show
 
     assert_response :success
-    assert_select 'a', html: /New CodiMD pad/
+    assert_select 'a', html: /New HedgeDoc pad/
   end
 
   def test_show_in_project
@@ -29,7 +29,7 @@ class CodimdsControllerTest < RedmineCodimd::ControllerTest
 
     assert_response :success
     assert_include 'eCookbook', response.body
-    assert_select 'a', html: /New CodiMD pad/
+    assert_select 'a', html: /New HedgeDoc pad/
   end
 
   def test_no_access_to_show_with_inactive_module

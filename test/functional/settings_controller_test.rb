@@ -1,6 +1,6 @@
 require File.expand_path '../../test_helper', __FILE__
 
-class SettingsControllerTestt < RedmineCodimd::ControllerTest
+class SettingsControllerTestt < RedmineHedgedoc::ControllerTest
   fixtures :projects,
            :users,
            :roles,
@@ -21,11 +21,11 @@ class SettingsControllerTestt < RedmineCodimd::ControllerTest
     @request.session[:user_id] = 1 # admin
   end
 
-  def test_codimd_settings
+  def test_hedgedoc_settings
     get :plugin,
-        params: { id: 'redmine_codimd' }
+        params: { id: 'redmine_hedgedoc' }
 
     assert_response :success
-    assert_select 'input#settings_codimd_url'
+    assert_select 'input#settings_hedgedoc_url'
   end
 end

@@ -1,0 +1,144 @@
+name: Tests
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.redmine }} ${{ matrix.db }} ruby-${{ matrix.ruby }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: ['2.6', '2.4']
+        redmine: ['4.1-stable', 'master']
+        db: ['postgres', 'mysql']
+      fail-fast: false
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: redmine
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_USER: root
+          MYSQL_PASSWORD: ''
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Verify MySQL connection from host
+        run: |
+          mysql --host 127.0.0.1 --port 3306 -uroot -e "SHOW DATABASES"
+        if: matrix.db == 'mysql'
+
+      - name: Checkout Redmine
+        uses: actions/checkout@v2
+        with:
+          repository: redmine/redmine
+          ref: ${{ matrix.redmine }}
+          path: redmine
+
+      - name: Checkout additionals
+        uses: actions/checkout@v2
+        with:
+          repository: AlphaNodes/additionals
+          path: redmine/plugins/additionals
+
+      - name: Checkout redmine_hedgedoc
+        uses: actions/checkout@v2
+        with:
+          path: redmine/plugins/redmine_hedgedoc
+
+      - name: Update package archives
+        run: sudo apt-get update --yes --quiet
+
+      - name: Install package dependencies
+        run: >
+          sudo apt-get install --yes --quiet
+          build-essential
+          cmake
+          libicu-dev
+          libpq-dev
+          libmysqlclient-dev
+
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Setup Cache
+        uses: actions/cache@v1
+        with:
+          path: vendor
+          key: v1-ruby-${{ matrix.ruby }}-redmine-${{ matrix.redmine }}
+
+      - name: Setup Bundler
+        run: |
+          gem install bundler -v '~> 1.0'
+          bundle config path "$(pwd)/vendor/bundle"
+
+      - name: Prepare Redmine source
+        working-directory: redmine
+        run: |
+          sed -i '/rubocop/d' Gemfile
+          rm -f .rubocop*
+          cp plugins/redmine_hedgedoc/test/support/database-${{ matrix.db }}.yml config/database.yml
+          cp plugins/redmine_hedgedoc/test/support/configuration.yml config/configuration.yml
+
+      - name: Install Ruby dependencies
+        working-directory: redmine
+        run: |
+          bundle install --jobs=4 --retry=3 --without development
+
+      - name: Generate session store secret
+        env:
+          RAILS_ENV: test
+        working-directory: redmine
+        run: |
+          bundle exec rake generate_secret_token
+
+      - name: Run Redmine DB and migration tasks
+        env:
+          RAILS_ENV: test
+        working-directory: redmine
+        run: |
+          bundle exec rake db:create:all
+          bundle exec rake db:migrate
+
+      - name: Import PostgreSQL dump with hedgedoc
+        working-directory: redmine
+        run: |
+          psql hedgedoc < test/support/hedgedoc-postgres.sql
+        if: matrix.db == 'postgres'
+
+      - name: Import MySQL dump with hedgedoc
+        run: |
+          mysql hedgedoc < test/support/hedgedoc-mysql.sql
+        if: matrix.db == 'mysql'
+
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_hedgedoc RUBYOPT="-W0"

@@ -1,5 +1,5 @@
-class CodimdAutor < ActiveRecord::Base
-  include CodimdDatabase
+class HedgedocAutor < ActiveRecord::Base
+  include HedgedocDatabase
   self.table_name = 'Authors'
 
   # id

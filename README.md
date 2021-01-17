@@ -1,35 +1,35 @@
-CodiMD plugin for Redmine
-==================================
+HedgeDoc plugin for Redmine
+===========================
 
-[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=fla)](https://www.redmine.org/plugins/redmine_codimd) [![Build Status](https://travis-ci.org/AlphaNodes/redmine_codimd.svg?branch=master)](https://travis-ci.org/AlphaNodes/redmine_codimd) ![Run RuboCop](https://github.com/AlphaNodes/redmine_codimd/workflows/Run%20RuboCop/badge.svg)
+[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=fla)](https://www.redmine.org/plugins/redmine_hedgedoc) [![Run Rubocop](https://github.com/AlphaNodes/redmine_hedgedoc/workflows/Run%20Rubocop/badge.svg)](https://github.com/AlphaNodes/redmine_hedgedoc/actions?query=workflow%3A%22Run+Rubocop%22) [![Run Brakeman](https://github.com/AlphaNodes/redmine_hedgedoc/workflows/Run%20Brakeman/badge.svg)](https://github.com/AlphaNodes/redmine_hedgedoc/actions?query=workflow%3A%22Run+Brakeman%22) [![Run Tests](https://github.com/AlphaNodes/redmine_hedgedoc/workflows/Tests/badge.svg)](https://github.com/AlphaNodes/redmine_hedgedoc/actions?query=workflow%3ATests)
 
 Features
 --------
 
-* Show list of own [CodiMD](https://github.com/codimd/server) pads in [Redmine](https://www.redmine.org/)
-* Show CodiMD pads in [Redmine](https://www.redmine.org/) projects, if pad name has redmine identifier as prefix. Eg. MyProject: MyPad
-
+* Show list of own [HedgeDoc](https://hedgedoc.org/) pads in [Redmine](https://www.redmine.org/)
+* Show HedgeDoc pads in [Redmine](https://www.redmine.org/) projects, if pad name has redmine identifier as prefix. Eg. MyProject: MyPad
 
 Redmine Requirements
 --------------------
 
-* Redmine version >= 4.0
+* Redmine version >= 4.1
 * Redmine Plugin: [additionals](https://github.com/alphanodes/additionals)
-* Ruby version >= 2.3.0
+* Ruby version >= 2.4.0
 
-CodiMD Requirements
--------------------
-* CodiMD version: all
+HedgeDoc Requirements
+---------------------
+
+* HedgeDoc version: all
 * E-Mail authentification
 
 Installation
 ------------
 
-Install ``redmine_codimd`` plugin for `Redmine`
+Install ``redmine_hedgedoc`` plugin for `Redmine`
 
     cd $REDMINE_ROOT
-    git clone git://github.com/alphanodes/redmine_codimd.git plugins/redmine_codimd
     git clone git://github.com/alphanodes/additionals.git plugins/additionals
+    git clone git://github.com/alphanodes/redmine_hedgedoc.git plugins/redmine_hedgedoc
     bundle install --without development test
     bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
@@ -39,25 +39,23 @@ Restart Redmine (application server) and you should see the plugin show up in th
 Configuration
 -------------
 
-Redmine needs access to [CodiMD](https://github.com/codimd/server) database. Add in your config/database.yml an paragraph names "codimd", e.g.
+Redmine needs access to [HedgeDoc](https://hedgedoc.org/) database. Add in your config/database.yml an paragraph names "hedgedoc", e.g.
 
-    codimd:
+    hedgedoc:
       adapter: postgresql
-      database: codimd
+      database: hedgedoc
       host: localhost
-      username: codimd
-      password: codimd
+      username: hedgedoc
+      password: hedgedoc
       encoding: utf8
       schema_search_path: public
-
-
 
 Uninstall
 ---------
 
-Uninstall ``redmine_codimd``
+Uninstall ``redmine_hedgedoc``
 
     cd $REDMINE_ROOT
-    rm -rf plugins/redmine_codimd
+    rm -rf plugins/redmine_hedgedoc
 
 Restart Redmine (application server)

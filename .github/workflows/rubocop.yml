@@ -1,10 +1,10 @@
-name: Run RuboCop
-
-on: [push]
+name: Run Rubocop
+on:
+  push:
+  pull_request:
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,12 +15,27 @@ jobs:
       with:
         ruby-version: 2.6.x
 
+    - name: Set Gemfile
+      run: |
+        echo "source 'https://rubygems.org'" > Gemfile
+        echo "group :test do" >> Gemfile
+        echo "  gem 'pandoc-ruby', require: false" >> Gemfile
+        echo "  gem 'rubocop', require: false" >> Gemfile
+        echo "  gem 'rubocop-performance', require: false" >> Gemfile
+        echo "  gem 'rubocop-rails', require: false" >> Gemfile
+        echo "  gem 'slim_lint', require: false" >> Gemfile
+        echo "end" >> Gemfile
+
     - name: Setup gems
       run: |
-        cp test/support/Gemfile.local Gemfile
         gem install bundler
         bundle install --jobs 4 --retry 3
 
     - name: Run RuboCop
       run: |
         bundle exec rubocop -S
+
+    - name: Run Slim-Lint
+      run: |
+        bundle exec slim-lint app/views
+      if: always()

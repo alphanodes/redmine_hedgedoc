@@ -1,0 +1,46 @@
+.contextual
+  = link_to l(:label_new_hedgedoc_pad), new_hedgedoc_pad_path, class: 'icon icon-add new-hedgedoc-pad external'
+  = link_to font_awesome_icon('fas_file-alt', post_text: l(:label_switch_to_hedgedoc)),
+            RedmineHedgedoc.setting(:hedgedoc_url), class: 'icon icon-hedgedoc external'
+
+- html_title(l(:label_hedgedoc_pad_plural))
+
+h2 = font_awesome_icon('fas_file-alt', post_text: l(:label_hedgedoc_pad_plural))
+
+- if @hedgedoc_pads.any?
+  .autoscroll
+    table.list.hedgedoc-pads
+      thead
+        tr
+          = sort_header_tag 'title', caption: l(:field_name)
+          th = l :field_author
+          = sort_header_tag 'permission', caption: l(:field_hedgedoc_permission)
+          = sort_header_tag 'createdAt', caption: l(:field_created_on)
+          = sort_header_tag 'updatedAt', caption: l(:field_updated_on)
+      tbody
+        - @hedgedoc_pads.each do |t|
+          tr class="#{cycle 'odd', 'even'}"
+            td.name = hedgedoc_pad_link(t, @project)
+            td.author
+              - owner = hedgedoc_pad_owner(t)
+              - if owner.present?
+                = link_to_user owner
+              - else
+                = h t.ownerId
+            td.permission = h t.permission
+            td.created_on = time_tag t.createdAt
+            td.updated_on = time_tag t.updatedAt
+
+  span.pagination
+    = pagination_links_full @hedgedoc_pad_pages, @hedgedoc_pad_count
+- else
+  p.nodata = l :label_no_data
+
+br
+
+div
+  em.info
+    - if @project
+      = t :label_hedgedoc_project_list_info_html, prefix: @project.identifier
+    - else
+      = t :label_hedgedoc_list_info_html

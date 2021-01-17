@@ -1,9 +1,9 @@
 # Abstraction to connect to the second database
-module CodimdDatabase
+module HedgedocDatabase
   extend ActiveSupport::Concern
 
   included do
-    establish_connection :codimd
+    establish_connection :hedgedoc
     self.inheritance_column = :_type_disabled
   end
 end

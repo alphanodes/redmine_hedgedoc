@@ -1,10 +1,10 @@
-module RedmineCodimd
+module RedmineHedgedoc
   class << self
     include Additionals::Helpers
 
     def setup
       # Helper
-      SettingsController.send :helper, CodimdsHelper
+      SettingsController.send :helper, HedgedocsHelper
     end
 
     # support with default setting as fall back
@@ -12,7 +12,7 @@ module RedmineCodimd
       if settings.key? value
         settings[value]
       else
-        Additionals.load_settings('redmine_codimd')[value]
+        Additionals.load_settings('redmine_hedgedoc')[value]
       end
     end
 
@@ -23,7 +23,7 @@ module RedmineCodimd
     private
 
     def settings
-      Setting[:plugin_redmine_codimd]
+      Setting[:plugin_redmine_hedgedoc]
     end
   end
 end

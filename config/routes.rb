@@ -1,5 +1,6 @@
-resource :codimd, only: %i[show]
+resource :hedgedoc, only: %i[show]
 
 resources :projects, only: [] do
-  resource :codimd, only: %i[show]
+  resource :hedgedoc, only: %i[show]
 end
+
