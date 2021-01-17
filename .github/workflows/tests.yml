@@ -127,14 +127,16 @@ jobs:
 
       - name: Import PostgreSQL dump with hedgedoc
         working-directory: redmine
+        env:
+          PGPASSWORD: postgres
         run: |
-          psql hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-postgres.sql
+          psql --host 127.0.0.1 --port 5432 hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-postgres.sql
         if: matrix.db == 'postgres'
 
       - name: Import MySQL dump with hedgedoc
         working-directory: redmine
         run: |
-          mysql hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-mysql.sql
+          mysql --host 127.0.0.1 --port 3306 -U postgres hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-mysql.sql
         if: matrix.db == 'mysql'
 
       - name: Run tests
