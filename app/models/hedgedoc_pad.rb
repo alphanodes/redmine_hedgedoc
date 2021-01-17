@@ -5,29 +5,21 @@ class HedgedocPad
     # e.g. ["open", "test_projekt"]
     def pads(project)
       scope = HedgedocNote.joins(:User)
-                          .where.not(title: nil,
-                                    Users: { email: nil })
+                          .where.not(title: nil, Users: { email: nil })
 
-      if project
-        scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
-            .where('LOWER(title) LIKE ?', "#{project.identifier}:%")
-      else
-        prefixes = HedgedocPad.project_identifier
-        scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
+      scope = scope.where.not(permission: 'private')
+                   .or(scope.where(Users: { email: User.current.mails }))
 
-        if prefixes.present?
-          scope.where("permission!='private' OR email IN(:mails)", mails: User.current.mails)
-          sql = '(email IN(:mails))'
-          sql << " OR (permission!='private' AND ("
-          prefix_line = []
-          prefixes.each do |prefix|
-            prefix_line << "LOWER(title) LIKE '#{prefix}:%'"
-          end
-          sql << prefix_line.join(' OR ')
-          sql << '))'
-        end
-        scope.where(sql, mails: User.current.mails)
+      like_values = project_identifier_like_values project
+      return scope if like_values.blank?
+
+      pscope = scope.where 'LOWER(title) LIKE ?', like_values.shift
+      # if more are available run loop
+      like_values.each do |like_value|
+        pscope = pscope.or(scope.where('LOWER(title) LIKE ?', like_value))
       end
+
+      pscope
     end
 
     # Fix problem with PostgreSQL table names and sort_clause method
@@ -43,9 +35,25 @@ class HedgedocPad
       keys
     end
 
+    private
+
     # Get all project identifier of the current user
-    def project_identifier
-      Project.where(Project.allowed_to_condition(User.current, :show_hedgedoc_pads)).pluck(:identifier)
+    def project_identifiers
+      Project.where(Project.allowed_to_condition(User.current, :show_hedgedoc_pads))
+             .pluck(:identifier)
+    end
+
+    def project_identifier_like_values(project)
+      likes = []
+      if project
+        likes << "#{project.identifier}:%"
+      else
+        project_identifiers.each do |identifier|
+          likes << "#{identifier}:%"
+        end
+      end
+
+      likes
     end
   end
 end

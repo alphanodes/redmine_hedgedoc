@@ -5,6 +5,7 @@ linters:
     ignored_cops:
       - Layout/AlignArguments
       - Layout/AlignArray
+      - Layout/ArgumentAlignment
       - Layout/AlignHash
       - Layout/AlignParameters
       - Layout/BlockEndNewline

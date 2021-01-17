@@ -128,12 +128,13 @@ jobs:
       - name: Import PostgreSQL dump with hedgedoc
         working-directory: redmine
         run: |
-          psql hedgedoc < test/support/hedgedoc-postgres.sql
+          psql hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-postgres.sql
         if: matrix.db == 'postgres'
 
       - name: Import MySQL dump with hedgedoc
+        working-directory: redmine
         run: |
-          mysql hedgedoc < test/support/hedgedoc-mysql.sql
+          mysql hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-mysql.sql
         if: matrix.db == 'mysql'
 
       - name: Run tests

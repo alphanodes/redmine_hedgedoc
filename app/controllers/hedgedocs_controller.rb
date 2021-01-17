@@ -25,7 +25,7 @@ class HedgedocsController < ApplicationController
     @hedgedoc_pad_pages = Paginator.new @hedgedoc_pad_count, @limit, params['page']
     @offset ||= @hedgedoc_pad_pages.offset
     @hedgedoc_pads = scope.order(HedgedocPad.fix_sort_clause(sort_clause))
-                        .limit(@limit)
-                        .offset(@offset)
+                          .limit(@limit)
+                          .offset(@offset)
   end
 end
