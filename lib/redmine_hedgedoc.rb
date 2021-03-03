@@ -1,3 +1,5 @@
+require 'redmine_hedgedoc/version'
+
 module RedmineHedgedoc
   class << self
     include Additionals::Helpers

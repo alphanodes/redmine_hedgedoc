@@ -2,7 +2,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
   name 'Redmine HedgeDoc'
   url 'https://github.com/alphanodes/redmine_hedgedoc'
   description 'Redmine plugin for HedgeDoc integration'
-  version '1.0.3'
+  version RedmineHedgedoc::VERSION
   author 'AlphaNodes GmbH'
   author_url 'https://alphanodes.com/'
 
