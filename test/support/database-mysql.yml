@@ -13,5 +13,5 @@ hedgedoc:
   port: <%= ENV["MYSQL_PORT"] %>
   host: 127.0.0.1
   username: root
-  password:
+  password: BestPasswordEver
   encoding: utf8mb4
