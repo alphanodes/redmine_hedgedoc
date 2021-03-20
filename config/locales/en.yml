@@ -10,3 +10,4 @@ en:
   label_hedgedoc_list_info_html: '<strong>Important:</strong> All your own PADs and all non-private PADs are listed here if they use a Redmine project identifier as prefix in the PAD title (e.g. "testprojekt: My PAD"). If you have access in Redmine to the projects with this project identifier, these PADs will be displayed to <em>all</em> project members.<br />Inform your HedgeDoc users that PADs with a correct project prefix are automatically listed in Redmine if the author is also a Redmine user.'
   label_hedgedoc_project_list_info_html: '<strong>Important:</strong> Lists all PADs with the prefix "%{prefix}" that are not marked as private or they are your own (e.g. "%{prefix}: My PAD").<br />Inform your HedgeDoc users that PADs with this project prefix will automatically be listed in Redmine if the author is also a Redmine user.'
   field_hedgedoc_permission: Permission
+  label_hedgedoc_pads: Pads

@@ -23,7 +23,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
   menu :top_menu,
        :hedgedoc,
        { controller: 'hedgedocs', action: 'show', project_id: nil },
-       caption: :project_module_hedgedoc,
+       caption: :label_hedgedoc_pads,
        if: (proc do
          User.current.allowed_to?({ controller: 'hedgedocs', action: 'show' }, nil, global: true) &&
          RedmineHedgedoc.setting(:hedgedoc_in_menu) == 'top'
@@ -31,7 +31,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
   menu :application_menu,
        :hedgedoc,
        { controller: 'hedgedocs', action: 'show', project_id: nil },
-       caption: :project_module_hedgedoc,
+       caption: :label_hedgedoc_pads,
        if: (proc do
          User.current.allowed_to?({ controller: 'hedgedocs', action: 'show' }, nil, global: true) &&
          RedmineHedgedoc.setting(:hedgedoc_in_menu) == 'app'
@@ -39,7 +39,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
   menu :project_menu,
        :hedgedocs,
        { controller: 'hedgedocs', action: 'show' },
-       caption: :project_module_hedgedoc,
+       caption: :label_hedgedoc_pads,
        param: :project_id
 end
 

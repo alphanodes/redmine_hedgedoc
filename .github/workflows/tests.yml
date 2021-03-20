@@ -32,13 +32,12 @@ jobs:
           --health-retries 5
 
       mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         env:
-          MYSQL_USER: root
-          MYSQL_PASSWORD: ''
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: 'BestPasswordEver'
         ports:
-          - 3306:3306
+          # will assign a random free host port
+          - 3306/tcp
         options: >-
           --health-cmd="mysqladmin ping"
           --health-interval=10s
@@ -48,7 +47,7 @@ jobs:
     steps:
       - name: Verify MySQL connection from host
         run: |
-          mysql --host 127.0.0.1 --port 3306 -uroot -e "SHOW DATABASES"
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} -uroot -pBestPasswordEver -e "SHOW DATABASES"
         if: matrix.db == 'mysql'
 
       - name: Checkout Redmine
@@ -103,6 +102,7 @@ jobs:
       - name: Generate session store secret
         env:
           RAILS_ENV: test
+          MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
         working-directory: redmine
         run: |
           bundle exec rake generate_secret_token
@@ -110,6 +110,7 @@ jobs:
       - name: Run Redmine DB and migration tasks
         env:
           RAILS_ENV: test
+          MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
         working-directory: redmine
         run: |
           bundle exec rake db:create:all
@@ -126,12 +127,12 @@ jobs:
       - name: Import MySQL dump with hedgedoc
         working-directory: redmine
         run: |
-          mysql --host 127.0.0.1 --port 3306 -uroot hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-mysql.sql
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} -uroot -pBestPasswordEver hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-mysql.sql
         if: matrix.db == 'mysql'
 
       - name: Run tests
         env:
           RAILS_ENV: test
-          REDMINE_VERSION: ${{ matrix.redmine }}
+          MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_hedgedoc RUBYOPT="-W0"

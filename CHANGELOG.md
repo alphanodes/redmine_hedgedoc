@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.0.4
+------
+
+- Use label Pads for menu
+
 v1.0.3
 ------
 
