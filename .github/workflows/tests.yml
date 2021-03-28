@@ -13,6 +13,9 @@ jobs:
         ruby: ['2.7', '2.6', '2.5']
         redmine: ['4.1-stable', '4.2-stable', 'master']
         db: ['postgres', 'mysql']
+        exclude:
+          - ruby: 2.7
+            redmine: 4.1-stable
       fail-fast: false
 
     services:
@@ -97,7 +100,8 @@ jobs:
       - name: Install Ruby dependencies
         working-directory: redmine
         run: |
-          bundle install --jobs=4 --retry=3 --without development
+          bundle config set --local without 'development'
+          bundle install --jobs=4 --retry=3
 
       - name: Generate session store secret
         env:
