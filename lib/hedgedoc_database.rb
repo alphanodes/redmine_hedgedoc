@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Abstraction to connect to the second database
 module HedgedocDatabase
   extend ActiveSupport::Concern

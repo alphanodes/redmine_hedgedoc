@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'redmine_hedgedoc/version'
 
 module RedmineHedgedoc

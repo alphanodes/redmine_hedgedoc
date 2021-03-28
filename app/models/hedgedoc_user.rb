@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HedgedocUser < ActiveRecord::Base
   include HedgedocDatabase
   self.table_name = 'Users'

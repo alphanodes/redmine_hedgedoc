@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.0.5
+------
+
+- Ruby 2.7 and Redmine 4.2 support
+
 v1.0.4
 ------
 

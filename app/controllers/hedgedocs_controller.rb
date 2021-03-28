@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HedgedocsController < ApplicationController
   before_action :require_login
   before_action :find_optional_project, only: %i[show]

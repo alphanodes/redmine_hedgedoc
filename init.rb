@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Redmine::Plugin.register :redmine_hedgedoc do
   name 'Redmine HedgeDoc'
   url 'https://github.com/alphanodes/redmine_hedgedoc'

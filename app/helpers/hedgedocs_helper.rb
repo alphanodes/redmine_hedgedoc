@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HedgedocsHelper
   def new_hedgedoc_pad_path
     "#{RedmineHedgedoc.setting :hedgedoc_url}/new"

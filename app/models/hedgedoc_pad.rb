@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HedgedocPad
   class << self
     # find pads (private pads and prefixed project pads)
