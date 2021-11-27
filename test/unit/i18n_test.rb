@@ -23,13 +23,14 @@ class I18nTest < RedmineHedgedoc::TestCase
     assert_equal lang_files_count, 2
     valid_languages.each do |lang|
       assert set_language_if_valid(lang)
+      case lang.to_s
+      when 'en'
+        assert_equal 'New HedgeDoc pad', l(:label_new_hedgedoc_pad)
+      when 'de'
+        assert_not l(:label_new_hedgedoc_pad) == 'New HedgeDoc pad', lang
+      end
     end
-    # check if parse error exists
-    ::I18n.locale = 'de'
-    assert_equal 'Neues HedgeDoc Pad', l(:label_new_hedgedoc_pad)
-    ::I18n.locale = 'en'
-    assert_equal 'New HedgeDoc pad', l(:label_new_hedgedoc_pad)
 
-    set_language_if_valid('en')
+    set_language_if_valid 'en'
   end
 end
