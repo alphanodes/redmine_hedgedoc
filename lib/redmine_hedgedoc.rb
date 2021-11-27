@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'redmine_hedgedoc/version'
-
 module RedmineHedgedoc
+  VERSION = '1.0.6'
+
   class << self
     include Additionals::Helpers
 
