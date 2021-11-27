@@ -7,8 +7,13 @@ module RedmineHedgedoc
     include Additionals::Helpers
 
     def setup
+      loader = AdditionalsLoader.new plugin_id: 'redmine_hedgedoc'
+
       # Helper
-      SettingsController.send :helper, HedgedocsHelper
+      loader.add_helper({ controller: 'Settings', helper: 'Hedgedocs' })
+
+      # Apply patches and helper
+      loader.apply!
     end
 
     # support with default setting as fall back
@@ -16,7 +21,7 @@ module RedmineHedgedoc
       if settings.key? value
         settings[value]
       else
-        Additionals.load_settings('redmine_hedgedoc')[value]
+        AdditionalsLoader.default_settings('redmine_hedgedoc')[value]
       end
     end
 

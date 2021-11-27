@@ -21,7 +21,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
     permission :import_hedgedoc_pads, hedgedocs: %i[import]
   end
 
-  settings default: Additionals.load_settings('redmine_hedgedoc'),
+  settings default: AdditionalsLoader.default_settings('redmine_hedgedoc'),
            partial: 'settings/hedgedoc'
 
   menu :top_menu,
@@ -47,6 +47,6 @@ Redmine::Plugin.register :redmine_hedgedoc do
        param: :project_id
 end
 
-Rails.configuration.to_prepare do
+AdditionalsLoader.to_prepare do
   RedmineHedgedoc.setup
 end
