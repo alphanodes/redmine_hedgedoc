@@ -47,6 +47,5 @@ Redmine::Plugin.register :redmine_hedgedoc do
        param: :project_id
 end
 
-AdditionalsLoader.to_prepare do
-  RedmineHedgedoc.setup
-end
+AdditionalsLoader.load_hooks! 'redmine_hedgedoc'
+AdditionalsLoader.to_prepare { RedmineHedgedoc.setup } if Rails.version < '6.0'
