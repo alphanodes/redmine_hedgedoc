@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-raise "\n\033[31mredmine_hedgedoc requires ruby 2.6 or newer. Please update your ruby version.\033[0m" if RUBY_VERSION < '2.6'
+loader = RedminePluginKit::Loader.new plugin_id: 'redmine_hedgedoc'
 
 Redmine::Plugin.register :redmine_hedgedoc do
   name 'Redmine HedgeDoc'
@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
   author_url 'https://alphanodes.com/'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '3.0.1'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0.3'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
@@ -21,7 +21,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
     permission :import_hedgedoc_pads, hedgedocs: %i[import]
   end
 
-  settings default: AdditionalsLoader.default_settings('redmine_hedgedoc'),
+  settings default: loader.default_settings,
            partial: 'settings/hedgedoc'
 
   menu :top_menu,
@@ -47,5 +47,5 @@ Redmine::Plugin.register :redmine_hedgedoc do
        param: :project_id
 end
 
-AdditionalsLoader.load_hooks! 'redmine_hedgedoc'
-AdditionalsLoader.to_prepare { RedmineHedgedoc.setup } if Rails.version < '6.0'
+RedminePluginKit::Loader.persisting { loader.load_model_hooks! }
+RedminePluginKit::Loader.to_prepare { RedmineHedgedoc.setup! } if Rails.version < '6.0'

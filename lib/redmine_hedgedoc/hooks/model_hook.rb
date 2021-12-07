@@ -2,9 +2,11 @@
 
 module RedmineHedgedoc
   module Hooks
-    class RedmineHedgedocHooksListener < Redmine::Hook::ViewListener
+    class ModelHook < Redmine::Hook::Listener
       def after_plugins_loaded(_context = {})
-        RedmineHedgedoc.setup if Rails.version > '6.0'
+        return if Rails.version < '6.0'
+
+        RedmineHedgedoc.setup!
       end
     end
   end

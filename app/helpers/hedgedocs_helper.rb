@@ -23,6 +23,6 @@ module HedgedocsHelper
             else
               note.title
             end
-    link_to h(title), hedgedoc_pad_url(note), class: 'external'
+    link_to_external h(title), hedgedoc_pad_url(note)
   end
 end
