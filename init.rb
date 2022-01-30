@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
   author_url 'https://alphanodes.com/'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '3.0.3'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0.4'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
