@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HedgedocAutor < ActiveRecord::Base
+class HedgedocAuthor < ActiveRecord::Base
   include HedgedocDatabase
   self.table_name = 'Authors'
 

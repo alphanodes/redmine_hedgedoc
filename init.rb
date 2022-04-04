@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_hedgedoc do
   author_url 'https://alphanodes.com/'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '3.0.4'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0.6'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
@@ -48,4 +48,3 @@ Redmine::Plugin.register :redmine_hedgedoc do
 end
 
 RedminePluginKit::Loader.persisting { loader.load_model_hooks! }
-RedminePluginKit::Loader.to_prepare { RedmineHedgedoc.setup! } if Rails.version < '6.0'

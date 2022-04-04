@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.0.8
+------
+
+- Ruby 2.7 and Redmine 5 is required
+
 v1.0.5
 ------
 
