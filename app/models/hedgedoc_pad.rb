@@ -7,7 +7,8 @@ class HedgedocPad
     # e.g. ["open", "test_projekt"]
     def pads(project)
       scope = HedgedocNote.joins(:User)
-                          .where.not(title: nil, Users: { email: nil })
+                          .where.not(title: nil)
+                          .where.not(Users: { email: nil })
 
       scope = scope.where.not(permission: 'private')
                    .or(scope.where(Users: { email: User.current.mails }))
