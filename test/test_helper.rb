@@ -20,12 +20,12 @@ require File.expand_path "#{File.dirname __FILE__}/../../../test/test_helper"
 module RedmineHedgedoc
   module TestHelper
     def prepare_tests
-      Role.where(id: [1, 2]).each do |r|
+      Role.where(id: [1, 2]).find_each do |r|
         r.permissions << :show_hedgedoc_pads
         r.save
       end
 
-      Project.where(id: [1, 2]).each do |project|
+      Project.where(id: [1, 2]).find_each do |project|
         EnabledModule.create project: project, name: 'hedgedoc'
       end
     end
