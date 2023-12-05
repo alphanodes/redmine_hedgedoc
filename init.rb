@@ -3,7 +3,7 @@
 loader = RedminePluginKit::Loader.new plugin_id: 'redmine_hedgedoc'
 
 Redmine::Plugin.register :redmine_hedgedoc do
-  name 'Redmine HedgeDoc'
+  name 'HedgeDoc integration'
   url 'https://github.com/alphanodes/redmine_hedgedoc'
   description 'Redmine plugin for HedgeDoc integration'
   version RedmineHedgedoc::VERSION
