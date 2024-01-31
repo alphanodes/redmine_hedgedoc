@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HedgedocAuthor < ActiveRecord::Base
+class HedgedocAuthor < Rails.version < '7.1' ? ActiveRecord::Base : ApplicationRecord
   include HedgedocDatabase
   self.table_name = 'Authors'
 
