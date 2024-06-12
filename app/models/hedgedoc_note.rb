@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HedgedocNote < Rails.version < '7.1' ? ActiveRecord::Base : ApplicationRecord
+class HedgedocNote < AdditionalsApplicationRecord
   include HedgedocDatabase
   self.table_name = 'Notes'
 
