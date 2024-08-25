@@ -19,7 +19,7 @@ class I18nTest < RedmineHedgedoc::TestCase
   end
 
   def test_locales_validness
-    lang_files_count = Dir[Rails.root.join('plugins/redmine_hedgedoc/config/locales/*.yml')].size
+    lang_files_count = Rails.root.glob('plugins/redmine_hedgedoc/config/locales/*.yml').size
     assert_equal lang_files_count, 2
     valid_languages.each do |lang|
       assert set_language_if_valid(lang)
