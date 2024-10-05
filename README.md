@@ -25,7 +25,8 @@ Install ``redmine_hedgedoc`` plugin for `Redmine`
     cd $REDMINE_ROOT
     git clone git://github.com/alphanodes/additionals.git plugins/additionals
     git clone git://github.com/alphanodes/redmine_hedgedoc.git plugins/redmine_hedgedoc
-    bundle update --without development test
+    bundle config set --local without 'development test'
+    bundle update
     bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
 Restart Redmine (application server) and you should see the plugin show up in the Plugins page.
