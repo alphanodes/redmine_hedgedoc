@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HedgedocUser < ApplicationRecord
+class HedgedocUser < AdditionalsApplicationRecord
   include HedgedocDatabase
   self.table_name = 'Users'
 
