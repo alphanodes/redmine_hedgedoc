@@ -1,5 +1,7 @@
 .contextual
-  = link_to l(:label_new_hedgedoc_pad), new_hedgedoc_pad_path, class: 'icon icon-add new-hedgedoc-pad external'
+  = link_to sprite_icon('add', l(:label_new_hedgedoc_pad)),
+            new_hedgedoc_pad_path,
+            class: 'icon icon-add new-hedgedoc-pad external'
   = link_to svg_icon_tag('filelist', label: l(:label_switch_to_hedgedoc)),
             RedmineHedgedoc.setting(:hedgedoc_url), class: 'icon icon-hedgedoc external'
 
