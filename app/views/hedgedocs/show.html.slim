@@ -1,11 +1,13 @@
 .contextual
   = link_to l(:label_new_hedgedoc_pad), new_hedgedoc_pad_path, class: 'icon icon-add new-hedgedoc-pad external'
-  = link_to font_awesome_icon('fas_file-alt', post_text: l(:label_switch_to_hedgedoc)),
+  = link_to svg_icon_tag('filelist', label: l(:label_switch_to_hedgedoc)),
             RedmineHedgedoc.setting(:hedgedoc_url), class: 'icon icon-hedgedoc external'
 
 - html_title(l(:label_hedgedoc_pad_plural))
 
-h2 = font_awesome_icon('fas_file-alt', post_text: l(:label_hedgedoc_pad_plural))
+h2#page-title.icon
+  = svg_icon_tag 'filelist', size: 24
+  = l :label_hedgedoc_pad_plural
 
 - if @hedgedoc_pads.any?
   .autoscroll
