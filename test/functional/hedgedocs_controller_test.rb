@@ -3,11 +3,7 @@
 require File.expand_path '../test_helper', __dir__
 
 class HedgedocsControllerTest < RedmineHedgedoc::ControllerTest
-  fixtures :projects,
-           :users, :email_addresses, :user_preferences,
-           :roles,
-           :members,
-           :member_roles
+  fixtures :all
 
   def setup
     prepare_tests
