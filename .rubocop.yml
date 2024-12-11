@@ -34,12 +34,6 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 25
 
-Rails/ApplicationJob:
-  Enabled: false
-
-Rails/ApplicationRecord:
-  Enabled: false
-
 Rails/CreateTableWithTimestamps:
   Enabled: false
 
