@@ -2,6 +2,7 @@
 
 class HedgedocAuthor < ApplicationRecord
   include HedgedocDatabase
+
   self.table_name = 'Authors'
 
   # id

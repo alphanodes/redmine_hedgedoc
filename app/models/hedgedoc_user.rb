@@ -2,6 +2,7 @@
 
 class HedgedocUser < ApplicationRecord
   include HedgedocDatabase
+
   self.table_name = 'Users'
 
   has_many :Notes, dependent: :destroy, foreign_key: 'id', inverse_of: :ownerId

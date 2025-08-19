@@ -2,6 +2,7 @@
 
 class HedgedocNote < ApplicationRecord
   include HedgedocDatabase
+
   self.table_name = 'Notes'
 
   belongs_to :User, class_name: 'HedgedocUser', foreign_key: 'ownerId', inverse_of: false
