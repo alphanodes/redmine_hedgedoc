@@ -10,17 +10,19 @@ jobs:
 
     strategy:
       matrix:
-        ruby: ['3.0', '3.1', '3.2']
-        redmine: ['5.0-stable', '5.1-stable', 'master']
+        ruby: ['3.1', '3.2', '3.3', '3.4']
+        redmine: ['6.0-stable', '6.1-stable', 'master']
         db: ['postgres', 'mysql']
         exclude:
-          - ruby: '3.2'
-            redmine: 5.0-stable
+          - ruby: '3.1'
+            redmine: master
+          - ruby: '3.4'
+            redmine: 6.0-stable
       fail-fast: false
 
     services:
       postgres:
-        image: postgres:16
+        image: postgres:18
         env:
           POSTGRES_DB: redmine
           POSTGRES_USER: postgres
@@ -54,20 +56,20 @@ jobs:
         if: matrix.db == 'mysql'
 
       - name: Checkout Redmine
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: redmine/redmine
           ref: ${{ matrix.redmine }}
           path: redmine
 
       - name: Checkout additionals
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: AlphaNodes/additionals
           path: redmine/plugins/additionals
 
       - name: Checkout redmine_hedgedoc
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: redmine/plugins/redmine_hedgedoc
 

@@ -9,9 +9,9 @@
 
 ## Redmine Requirements
 
-* Redmine version >= 5
+* Redmine version >= 6
 * Redmine Plugin: [additionals](https://github.com/alphanodes/additionals)
-* Ruby version >= 3.0
+* Ruby version >= 3.1
 
 ## HedgeDoc Requirements
 

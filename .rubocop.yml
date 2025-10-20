@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
 
@@ -6,8 +6,8 @@ Rails:
   Enabled: true
 
 AllCops:
-  TargetRubyVersion: 2.7
-  TargetRailsVersion: 6.1.4
+  TargetRubyVersion: 3.1
+  TargetRailsVersion: 7.2
   NewCops: enable
 
 Metrics/AbcSize:
@@ -33,12 +33,6 @@ Metrics/ModuleLength:
 
 Metrics/PerceivedComplexity:
   Max: 25
-
-Rails/ApplicationJob:
-  Enabled: false
-
-Rails/ApplicationRecord:
-  Enabled: false
 
 Rails/CreateTableWithTimestamps:
   Enabled: false

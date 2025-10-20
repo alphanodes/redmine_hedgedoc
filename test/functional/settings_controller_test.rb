@@ -3,19 +3,7 @@
 require File.expand_path '../test_helper', __dir__
 
 class SettingsControllerTestt < RedmineHedgedoc::ControllerTest
-  fixtures :projects,
-           :users,
-           :roles,
-           :members,
-           :member_roles,
-           :enabled_modules,
-           :enumerations,
-           :attachments,
-           :custom_fields,
-           :custom_values,
-           :journals,
-           :journal_details,
-           :queries
+  fixtures :all
 
   def setup
     @controller = SettingsController.new

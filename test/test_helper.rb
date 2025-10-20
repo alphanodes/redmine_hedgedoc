@@ -16,9 +16,12 @@ if ENV['COVERAGE']
 end
 
 require File.expand_path "#{File.dirname __FILE__}/../../../test/test_helper"
+require File.expand_path "#{File.dirname __FILE__}/../../additionals/test/global_test_helper"
 
 module RedmineHedgedoc
   module TestHelper
+    include Additionals::GlobalTestHelper
+
     def prepare_tests
       Role.where(id: [1, 2]).find_each do |r|
         r.permissions << :show_hedgedoc_pads

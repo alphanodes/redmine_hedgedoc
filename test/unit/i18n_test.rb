@@ -5,6 +5,8 @@ require File.expand_path '../test_helper', __dir__
 class I18nTest < RedmineHedgedoc::TestCase
   include Redmine::I18n
 
+  fixtures :all
+
   def setup
     User.current = nil
   end
