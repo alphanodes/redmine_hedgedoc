@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$VERBOSE = nil
+$VERBOSE = nil if ENV['SUPPRESS_WARNINGS']
 
 if ENV['COVERAGE']
   require 'simplecov'
