@@ -28,4 +28,4 @@ jobs:
 
     - name: Run Brakeman
       run: |
-        bundle exec brakeman -5 --force
+        bundle exec brakeman -8 --force
