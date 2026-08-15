@@ -10,9 +10,35 @@ jobs:
 
     strategy:
       matrix:
-        ruby: ['3.2', '3.3', '3.4']
-        redmine: ['6.1-stable', 'master']
-        db: ['postgres', 'mysql']
+        ruby: ['3.3', '3.4', '4.0']
+        redmine: ['7.0-stable', 'master']
+        # Ruby compatibility does not depend on the database, so the full ruby
+        # matrix runs on the current PostgreSQL only. Every other database gets
+        # two jobs, which is enough to catch adapter and dialect differences.
+        db: ['postgres']
+        include:
+          - ruby: '3.4'
+            redmine: '7.0-stable'
+            db: 'mysql'
+          - ruby: '3.4'
+            redmine: 'master'
+            db: 'mysql'
+          # MariaDB is the mysql variant most Redmine installations actually run,
+          # since Debian and Ubuntu ship it instead of MySQL.
+          - ruby: '3.4'
+            redmine: '7.0-stable'
+            db: 'mariadb'
+          - ruby: '3.4'
+            redmine: 'master'
+            db: 'mariadb'
+          # Pins the oldest PostgreSQL we claim to support in the README,
+          # otherwise that claim is never verified.
+          - ruby: '3.4'
+            redmine: '7.0-stable'
+            db: 'postgres16'
+          - ruby: '3.4'
+            redmine: 'master'
+            db: 'postgres16'
       fail-fast: false
 
     services:
@@ -31,8 +57,24 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
+      postgres16:
+        image: postgres:16
+        env:
+          POSTGRES_DB: redmine
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          # will assign a random free host port
+          - 5432/tcp
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
       mysql:
-        image: mysql:8.0
+        image: mysql:8.4
         env:
           MYSQL_ROOT_PASSWORD: 'BestPasswordEver'
         ports:
@@ -44,11 +86,34 @@ jobs:
           --health-timeout=5s
           --health-retries=3
 
+      mariadb:
+        image: mariadb:11.8
+        env:
+          MARIADB_ROOT_PASSWORD: 'BestPasswordEver'
+        ports:
+          # will assign a random free host port
+          - 3306/tcp
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
       - name: Verify MySQL connection from host
         run: |
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} -uroot -pBestPasswordEver -e "SHOW DATABASES"
         if: matrix.db == 'mysql'
+
+      - name: Verify MariaDB connection from host
+        run: |
+          mysql --host 127.0.0.1 --port ${{ job.services.mariadb.ports[3306] }} -uroot -pBestPasswordEver -e "SELECT VERSION()"
+        if: matrix.db == 'mariadb'
+
+      - name: Verify PostgreSQL 16 connection from host
+        run: |
+          PGPASSWORD=postgres psql --host 127.0.0.1 --port ${{ job.services.postgres16.ports[5432] }} -U postgres -c "SELECT version()"
+        if: matrix.db == 'postgres16'
 
       - name: Checkout Redmine
         uses: actions/checkout@v5
@@ -80,6 +145,10 @@ jobs:
           libpq-dev
           libmysqlclient-dev
 
+      - name: Setup Gemfile
+        run: |
+          touch redmine/plugins/additionals/.enable_test
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -91,6 +160,7 @@ jobs:
         run: |
           cp plugins/redmine_hedgedoc/test/support/database-${{ matrix.db }}.yml config/database.yml
           cp plugins/redmine_hedgedoc/test/support/configuration.yml config/configuration.yml
+          cp plugins/additionals/test/support/additional_environment.rb config/additional_environment.rb
 
       - name: Install Ruby dependencies
         working-directory: redmine
@@ -102,14 +172,20 @@ jobs:
         env:
           RAILS_ENV: test
           MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
+          MARIADB_PORT: ${{ job.services.mariadb.ports[3306] }}
+          POSTGRES16_PORT: ${{ job.services.postgres16.ports[5432] }}
         working-directory: redmine
         run: |
           bundle exec rake generate_secret_token
 
+      # db:create:all instead of db:create, because the plugin talks to a second
+      # database holding the HedgeDoc pads next to the Redmine one.
       - name: Run Redmine DB and migration tasks
         env:
           RAILS_ENV: test
           MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
+          MARIADB_PORT: ${{ job.services.mariadb.ports[3306] }}
+          POSTGRES16_PORT: ${{ job.services.postgres16.ports[5432] }}
         working-directory: redmine
         run: |
           bundle exec rake db:create:all
@@ -123,15 +199,31 @@ jobs:
           psql --host 127.0.0.1 --port 5432 -U postgres hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-postgres.sql
         if: matrix.db == 'postgres'
 
+      - name: Import PostgreSQL 16 dump with hedgedoc
+        working-directory: redmine
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql --host 127.0.0.1 --port ${{ job.services.postgres16.ports[5432] }} -U postgres hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-postgres.sql
+        if: matrix.db == 'postgres16'
+
       - name: Import MySQL dump with hedgedoc
         working-directory: redmine
         run: |
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} -uroot -pBestPasswordEver hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-mysql.sql
         if: matrix.db == 'mysql'
 
+      - name: Import MariaDB dump with hedgedoc
+        working-directory: redmine
+        run: |
+          mysql --host 127.0.0.1 --port ${{ job.services.mariadb.ports[3306] }} -uroot -pBestPasswordEver hedgedoc < plugins/redmine_hedgedoc/test/support/hedgedoc-mysql.sql
+        if: matrix.db == 'mariadb'
+
       - name: Run tests
         env:
           RAILS_ENV: test
           MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
+          MARIADB_PORT: ${{ job.services.mariadb.ports[3306] }}
+          POSTGRES16_PORT: ${{ job.services.postgres16.ports[5432] }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_hedgedoc RUBYOPT="-W0"
