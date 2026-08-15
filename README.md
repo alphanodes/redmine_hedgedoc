@@ -9,9 +9,10 @@
 
 ## Redmine Requirements
 
-* Redmine version >= 6
+* Redmine version >= 7.0
+* Ruby version >= 3.3
+* Database: MySQL >= 8.4, MariaDB >= 11.8 or PostgreSQL >= 16
 * Redmine Plugin: [additionals](https://github.com/alphanodes/additionals)
-* Ruby version >= 3.1
 
 ## HedgeDoc Requirements
 

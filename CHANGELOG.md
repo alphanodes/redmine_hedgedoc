@@ -1,6 +1,18 @@
 Changelog
 =========
 
+v1.2.0
+------
+
+- Redmine 7.0 required
+- Ruby 3.3 required
+- additionals 4.6.0 required
+
+v1.1.0
+------
+
+- additionals 4.2.0 required
+
 v1.0.8
 ------
 
