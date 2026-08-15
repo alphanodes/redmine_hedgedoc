@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require File.expand_path '../test_helper', __dir__
+require File.expand_path '../../test_helper', __FILE__
 
-class SettingsControllerTestt < RedmineHedgedoc::ControllerTest
+class SettingsControllerTest < RedmineHedgedoc::ControllerTest
   fixtures :all
 
   def setup

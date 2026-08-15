@@ -47,6 +47,11 @@ Performance/ChainArrayAllocation:
 Style/AutoResourceCleanup:
   Enabled: true
 
+Style/ExpandPathArguments:
+  Enabled: true
+  Exclude:
+    - test/**/*
+
 Style/Documentation:
   Enabled: false
 
