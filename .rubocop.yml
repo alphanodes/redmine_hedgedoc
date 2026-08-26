@@ -6,8 +6,8 @@ Rails:
   Enabled: true
 
 AllCops:
-  TargetRubyVersion: 3.1
-  TargetRailsVersion: 7.2
+  TargetRubyVersion: 3.3
+  TargetRailsVersion: 8.1
   DisabledByDefault: false
   NewCops: enable
 
