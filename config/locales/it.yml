@@ -1,0 +1,13 @@
+it:
+  field_hedgedoc_permission: "Permesso"
+  label_hedgedoc_list_info_html: "<strong>Importante:</strong> Qui sono elencati i tuoi pad e tutti i pad non privati il cui titolo inizia con l'identificativo di un progetto Redmine (ad es. \"testproject: Il mio pad\"). Questi pad vengono mostrati a <em>tutti</em> i membri di quel progetto.<br />Informa i tuoi utenti HedgeDoc che i pad con un prefisso di progetto corretto compaiono automaticamente in Redmine, purché il loro autore sia anche un utente Redmine."
+  label_hedgedoc_pad_plural: "Pad HedgeDoc"
+  label_hedgedoc_pads: "Pad"
+  label_hedgedoc_project_list_info_html: "<strong>Importante:</strong> Qui sono elencati i tuoi pad con il prefisso \"%{prefix}\" e tutti quelli non privati (ad es. \"%{prefix}: Il mio pad\").<br />Informa i tuoi utenti HedgeDoc che i pad con questo prefisso di progetto compaiono automaticamente in Redmine, purché il loro autore sia anche un utente Redmine."
+  label_hedgedoc_url: "URL di HedgeDoc"
+  label_new_hedgedoc_pad: "Nuovo pad HedgeDoc"
+  label_show_hedgedoc_in_menu: "Mostra HedgeDoc nel menu"
+  label_switch_to_hedgedoc: "Passa a HedgeDoc"
+  permission_import_hedgedoc_pads: "Importa pad HedgeDoc"
+  permission_show_hedgedoc_pads: "Visualizza pad HedgeDoc"
+  project_module_hedgedoc: "HedgeDoc"

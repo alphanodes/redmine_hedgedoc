@@ -1,0 +1,13 @@
+cs:
+  field_hedgedoc_permission: "Oprávnění"
+  label_hedgedoc_list_info_html: "<strong>Důležité:</strong> Zobrazují se zde vaše vlastní pady a všechny pady, které nejsou soukromé, pokud jejich název začíná identifikátorem projektu v Redmine (např. \"testproject: Můj pad\"). Takové pady se zobrazují <em>všem</em> členům tohoto projektu.<br />Informujte své uživatele HedgeDoc, že pady se správnou předponou projektu se v Redmine zobrazí automaticky, pokud je jejich autor také uživatelem Redmine."
+  label_hedgedoc_pad_plural: "Pady HedgeDoc"
+  label_hedgedoc_pads: "Pady"
+  label_hedgedoc_project_list_info_html: "<strong>Důležité:</strong> Zobrazují se zde vaše vlastní pady s předponou \"%{prefix}\" a všechny takové pady, které nejsou soukromé (např. \"%{prefix}: Můj pad\").<br />Informujte své uživatele HedgeDoc, že pady s touto předponou projektu se v Redmine zobrazí automaticky, pokud je jejich autor také uživatelem Redmine."
+  label_hedgedoc_url: "URL HedgeDoc"
+  label_new_hedgedoc_pad: "Nový pad HedgeDoc"
+  label_show_hedgedoc_in_menu: "Zobrazit HedgeDoc v menu"
+  label_switch_to_hedgedoc: "Přejít do HedgeDoc"
+  permission_import_hedgedoc_pads: "Import padů HedgeDoc"
+  permission_show_hedgedoc_pads: "Zobrazení padů HedgeDoc"
+  project_module_hedgedoc: "HedgeDoc"

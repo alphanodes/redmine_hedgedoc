@@ -1,0 +1,13 @@
+ja:
+  field_hedgedoc_permission: "権限"
+  label_hedgedoc_list_info_html: "<strong>重要:</strong> 自分のパッドと、タイトルがRedmineプロジェクトの識別子で始まる非公開でないパッド (例: \"testproject: 私のパッド\") がここに一覧表示されます。これらのパッドはそのプロジェクトの<em>すべての</em>メンバーに表示されます。<br />正しいプロジェクトのプレフィックスを持つパッドは、作成者がRedmineユーザーでもあれば自動的にRedmineに表示されることを、HedgeDocのユーザーに伝えてください。"
+  label_hedgedoc_pad_plural: "HedgeDocパッド"
+  label_hedgedoc_pads: "パッド"
+  label_hedgedoc_project_list_info_html: "<strong>重要:</strong> プレフィックス \"%{prefix}\" を持つ自分のパッドと、非公開でないすべてのパッド (例: \"%{prefix}: 私のパッド\") がここに一覧表示されます。<br />このプロジェクトのプレフィックスを持つパッドは、作成者がRedmineユーザーでもあれば自動的にRedmineに表示されることを、HedgeDocのユーザーに伝えてください。"
+  label_hedgedoc_url: "HedgeDocのURL"
+  label_new_hedgedoc_pad: "新しいHedgeDocパッド"
+  label_show_hedgedoc_in_menu: "メニューにHedgeDocを表示"
+  label_switch_to_hedgedoc: "HedgeDocに切り替え"
+  permission_import_hedgedoc_pads: "HedgeDocパッドのインポート"
+  permission_show_hedgedoc_pads: "HedgeDocパッドの閲覧"
+  project_module_hedgedoc: "HedgeDoc"

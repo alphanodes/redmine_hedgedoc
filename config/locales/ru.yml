@@ -1,0 +1,13 @@
+ru:
+  field_hedgedoc_permission: "Права"
+  label_hedgedoc_list_info_html: "<strong>Важно:</strong> Здесь перечислены ваши собственные пады и все пады, которые не являются частными, если их название начинается с идентификатора проекта Redmine (например, \"testproject: Мой пад\"). Такие пады видны <em>всем</em> участникам этого проекта.<br />Сообщите пользователям HedgeDoc, что пады с правильным префиксом проекта автоматически появляются в Redmine, если их автор также является пользователем Redmine."
+  label_hedgedoc_pad_plural: "Пады HedgeDoc"
+  label_hedgedoc_pads: "Пады"
+  label_hedgedoc_project_list_info_html: "<strong>Важно:</strong> Здесь перечислены ваши собственные пады с префиксом \"%{prefix}\" и все такие пады, которые не являются частными (например, \"%{prefix}: Мой пад\").<br />Сообщите пользователям HedgeDoc, что пады с этим префиксом проекта автоматически появляются в Redmine, если их автор также является пользователем Redmine."
+  label_hedgedoc_url: "URL HedgeDoc"
+  label_new_hedgedoc_pad: "Новый пад HedgeDoc"
+  label_show_hedgedoc_in_menu: "Показывать HedgeDoc в меню"
+  label_switch_to_hedgedoc: "Перейти в HedgeDoc"
+  permission_import_hedgedoc_pads: "Импорт падов HedgeDoc"
+  permission_show_hedgedoc_pads: "Просмотр падов HedgeDoc"
+  project_module_hedgedoc: "HedgeDoc"

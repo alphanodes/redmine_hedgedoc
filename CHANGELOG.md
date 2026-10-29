@@ -4,6 +4,7 @@ Changelog
 v1.2.0
 ------
 
+- Czech, Spanish, French, Italian, Japanese, Korean, Polish, Portuguese (Brazil), Russian, Ukrainian and Chinese translations added, English and German texts revised
 - Redmine 7.0 required
 - Ruby 3.3 required
 - additionals 4.6.0 required

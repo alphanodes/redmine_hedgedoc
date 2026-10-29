@@ -1,0 +1,13 @@
+ko:
+  field_hedgedoc_permission: "권한"
+  label_hedgedoc_list_info_html: "<strong>중요:</strong> 내 패드와, 제목이 Redmine 프로젝트 식별자로 시작하는 비공개가 아닌 모든 패드(예: \"testproject: 내 패드\")가 여기에 표시됩니다. 이러한 패드는 해당 프로젝트의 <em>모든</em> 구성원에게 표시됩니다.<br />올바른 프로젝트 접두사가 있는 패드는 작성자가 Redmine 사용자이기도 하면 Redmine에 자동으로 표시된다는 것을 HedgeDoc 사용자에게 알려 주세요."
+  label_hedgedoc_pad_plural: "HedgeDoc 패드"
+  label_hedgedoc_pads: "패드"
+  label_hedgedoc_project_list_info_html: "<strong>중요:</strong> 접두사 \"%{prefix}\"가 붙은 내 패드와 비공개가 아닌 모든 패드(예: \"%{prefix}: 내 패드\")가 여기에 표시됩니다.<br />이 프로젝트 접두사가 있는 패드는 작성자가 Redmine 사용자이기도 하면 Redmine에 자동으로 표시된다는 것을 HedgeDoc 사용자에게 알려 주세요."
+  label_hedgedoc_url: "HedgeDoc URL"
+  label_new_hedgedoc_pad: "새 HedgeDoc 패드"
+  label_show_hedgedoc_in_menu: "메뉴에 HedgeDoc 표시"
+  label_switch_to_hedgedoc: "HedgeDoc으로 전환"
+  permission_import_hedgedoc_pads: "HedgeDoc 패드 가져오기"
+  permission_show_hedgedoc_pads: "HedgeDoc 패드 보기"
+  project_module_hedgedoc: "HedgeDoc"

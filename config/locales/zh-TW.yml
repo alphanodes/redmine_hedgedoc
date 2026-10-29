@@ -1,0 +1,13 @@
+zh-TW:
+  field_hedgedoc_permission: "權限"
+  label_hedgedoc_list_info_html: "<strong>重要：</strong>這裡列出你自己的筆記，以及所有標題以 Redmine 專案代碼開頭的非私人筆記（例如 \"testproject: 我的筆記\"）。這些筆記會顯示給該專案的<em>所有</em>成員。<br />請告知你的 HedgeDoc 用戶：只要作者同時是 Redmine 用戶，帶有正確專案前綴的筆記就會自動出現在 Redmine 中。"
+  label_hedgedoc_pad_plural: "HedgeDoc 筆記"
+  label_hedgedoc_pads: "筆記"
+  label_hedgedoc_project_list_info_html: "<strong>重要：</strong>這裡列出你自己帶有前綴 \"%{prefix}\" 的筆記，以及所有帶此前綴的非私人筆記（例如 \"%{prefix}: 我的筆記\"）。<br />請告知你的 HedgeDoc 用戶：只要作者同時是 Redmine 用戶，帶有此專案前綴的筆記就會自動出現在 Redmine 中。"
+  label_hedgedoc_url: "HedgeDoc URL"
+  label_new_hedgedoc_pad: "新增 HedgeDoc 筆記"
+  label_show_hedgedoc_in_menu: "在選單中顯示 HedgeDoc"
+  label_switch_to_hedgedoc: "切換到 HedgeDoc"
+  permission_import_hedgedoc_pads: "匯入 HedgeDoc 筆記"
+  permission_show_hedgedoc_pads: "檢視 HedgeDoc 筆記"
+  project_module_hedgedoc: "HedgeDoc"
