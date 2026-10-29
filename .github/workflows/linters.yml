@@ -1,4 +1,4 @@
-name: Run Rubocop
+name: Run Linters
 on:
   push:
   pull_request:
@@ -21,6 +21,10 @@ jobs:
         cp test/support/gemfile.rb Gemfile
         bundle install --jobs 4 --retry 3
 
+    - name: Show used RuboCop version
+      run: |
+        bundle exec rubocop -V
+
     - name: Run RuboCop
       run: |
         bundle exec rubocop -S
@@ -29,3 +33,7 @@ jobs:
       run: |
         bundle exec slim-lint app/views
       if: always()
+
+    - name: Run Brakeman
+      run: |
+        bundle exec brakeman -8

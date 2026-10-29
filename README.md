@@ -1,6 +1,6 @@
 # HedgeDoc plugin for Redmine
 
-[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=fla)](https://www.redmine.org/plugins/redmine_hedgedoc) [![Run Rubocop](https://github.com/AlphaNodes/redmine_hedgedoc/workflows/Run%20Rubocop/badge.svg)](https://github.com/AlphaNodes/redmine_hedgedoc/actions/workflows/rubocop.yml) [![Run Brakeman](https://github.com/AlphaNodes/redmine_hedgedoc/workflows/Run%20Brakeman/badge.svg)](https://github.com/AlphaNodes/redmine_hedgedoc/actions/workflows/brakeman.yml) [![Run Tests](https://github.com/AlphaNodes/redmine_hedgedoc/workflows/Tests/badge.svg)](https://github.com/AlphaNodes/redmine_hedgedoc/actions/workflows/tests.yml)
+[![Rate at redmine.org](https://img.shields.io/badge/rate%20at-redmine.org-blue.svg?style=flat)](https://www.redmine.org/plugins/redmine_hedgedoc) [![Run Linters](../../actions/workflows/linters.yml/badge.svg)](../../actions/workflows/linters.yml) [![Run Tests](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
 ## Features
 
